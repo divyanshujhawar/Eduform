@@ -42,7 +42,7 @@ class AdminNavBar extends Component{
 
     render() {
 
-        {/*this.checkUserStatus();*/}
+        this.checkUserStatus();
 
         return (
             <div className="container">
