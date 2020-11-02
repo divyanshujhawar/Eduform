@@ -5,72 +5,66 @@ import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.
 import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
+import AssignmentGen from '../courses/GenericAssignments.js';
 
 class OptionWheel extends React.Component {
 
     constructor(props){
       super(props);
 
+      var courseOne = this.props.currentClass;
+
       this.state = {
-        homeLink : this.props.linkToCourse
+        currentCourse : courseOne
       }
     }
 
     render(){
       return(
 
-          <div style={{paddingTop: '15px'}}className="col-md-8 col-sm-12">
-          <div style={{marginBottom: '45px'}} className="row">
-            <div style={{textAlign: 'right', paddingRight: '30px'}} className="col-6">
-            <Link to={`./${this.state.homeLink}-grades`}>
-              <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                <i style={{fontSize: '5.5rem', color:'#1089ff'}} class="fas fa-percent"></i>
-                <h3 style={{marginTop: '2px', marginBottom: '0px', color: '#febf63'}}> Grades </h3>
-              </a>
-            </Link>
-            </div>
-            <div style={{textAlign: 'left',paddingLeft: '30px'}} className="col-6">
-            <Link to={`./${this.state.homeLink}`}>
-              <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                <i style={{fontSize: '5.5rem', color:'#1089ff'}} className="fas fa-home"></i>
-                <h3 style={{marginTop: '2px', marginBottom: '0px', color: '#febf63'}}> Home </h3>
-              </a>
-            </Link>
+        <div style={{width: '300px'}} class="ui vertical menu">
+          <div class="item">
+            <div class="ui transparent icon input">
+              <input type="text" placeholder="Search Course Material"/>
+              <i class="search icon"></i>
             </div>
           </div>
-          <div style={{marginBottom: '10px'}} className="row">
-            <div style={{textAlign: 'right'}} className="col-5">
-            <Link to={`./${this.state.homeLink}-notifications`}>
-              <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                <i style={{fontSize: '5.5rem', color:'#1089ff'}} class="fas fa-exclamation-circle"></i>
-                <h3 style={{marginTop: '2px', marginBottom: '0px', color: '#febf63'}}> Notifications </h3>
+          <Link to={{pathname:'/course102012930',bstate : {
+            currentClass1 : this.state.currentCourse
+          }}}> <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
+            <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Home</b></p>
               </a>
-            </Link>
-            </div>
-            <div style={{fontSize: '7.5rem',textAlign: 'center'}} className="col-2">
-              <i style={{color:'#febf63'}} class="fas fa-circle"></i>
-            </div>
-            <div style={{paddingLeft: '32px',textAlign: 'left'}} className="col-5">
-            <Link to={`./${this.state.homeLink}-assignments`}>
-              <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                <i style={{fontSize: '5.5rem', color:'#1089ff'}} class="fas fa-copy"></i>
-                <h3 style={{marginTop: '2px', marginBottom: '0px', color: '#febf63'}}> Assignments </h3>
+          </Link>
+          <Link to={{pathname:'/coursegrades827398',astate : {
+            currentClass2 : this.state.currentCourse
+          }}}> <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
+              <p className="studentWords"style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Grades</b></p>
               </a>
-            </Link>
-            </div>
-          </div>
-          <div style={{marginTop:'35px'}}className="row">
-            <div style={{textAlign: 'center'}} className="col-12">
-            <Link to={`./${this.state.homeLink}-chat`}>
-              <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                <i style={{fontSize: '5.5rem', color:'#1089ff'}} className="far fa-comment"></i>
-                <h3 style={{marginTop: '2px', marginBottom: '0px', color: '#febf63'}}> Chat </h3>
+          </Link>
+          <Link to={{pathname:'/courseAssignments093028',assignstate : {
+            theCourse : this.state.currentCourse
+          }}}> <a style={{backgroundColor: '#febf63', width: '300px', height: '50px'}} class="item">
+              <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Assignments </b></p>
               </a>
-            </Link>
-            </div>
-            </div>
+          </Link>
+          <Link to={{pathname:'/coursechat28738',cstate : {
+            currentClass3 : this.state.currentCourse
+          }}}> <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
+             <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Chat</b></p>
+             </a>
+          </Link>
 
-          </div>
+          <Link to={{pathname:'/coursesettings930293',dstate : {
+           currentClass4 : this.state.currentCourse
+           }}}>
+            <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
+              <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Settings</b></p>
+                </a>
+          </Link>
+
+      </div>
+
+
       );
     }
 }

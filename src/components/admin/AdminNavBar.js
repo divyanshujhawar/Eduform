@@ -21,12 +21,10 @@ class AdminNavBar extends Component{
 
 
     logUserOut(){
-        console.log("Hanlo");
 
         this.state.userProfile.email = ''
 
-        UserProfile.setUserProfile(this.state.userProfile);
-        console.log("Changes made during Logout: ", UserProfile.getEmail());
+        UserProfile.setEmail(this.state.userProfile);
 
         return this.props.history.push('/sign-in');
 

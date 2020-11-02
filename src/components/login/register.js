@@ -130,8 +130,7 @@ class Register extends Component {
             })
             .then(res => res.text())
             .then(text => {
-
-                
+                 
                 this.state.response = text;
                 if (text !== "SUCCESS!"){
                     alert("This email address already exists");

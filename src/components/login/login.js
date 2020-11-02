@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import googleBtn from '../../assets/btn_google_signin.png';
 import Logo from '../.././assets/edLogo.png';
 import NavBar from './navigation.js';
 import UserProfile from '../.././utils/UserProfile';
@@ -50,6 +51,8 @@ class Login extends Component {
         this.state.user.email = document.getElementById("email").value;
         this.state.user.password = document.getElementById("password").value;
 
+        console.log(this.state.user);
+
         try{
             const response = await fetch('/user/login', {
                 method: 'POST',
@@ -66,11 +69,12 @@ class Login extends Component {
                     var saveUserProfile = jsonData.result[0];
 
                     UserProfile.setUserProfile(saveUserProfile);
-                    
-                    if(saveUserProfile.role === 'a'){
+
+
+                    if (UserProfile.getRole() === 'a'){
                         return this.props.history.push('/admin-home');
                     }
-                    else if(saveUserProfile.role === 't'){
+                    else if (UserProfile.getRole() === 't'){
                         return this.props.history.push('/teacher-home');
                     }
                     else{
@@ -167,10 +171,11 @@ class Login extends Component {
                         var saveUserProfile = jsonData.result[0];
                         UserProfile.setUserProfile(saveUserProfile);
 
-                        if(saveUserProfile.role === 'a'){
+                        alert("Login Successful");
+                        if (UserProfile.getRole() === 'a'){
                             return this.props.history.push('/admin-home');
                         }
-                        else if(saveUserProfile.role === 't'){
+                        else if (UserProfile.getRole() === 't'){
                             return this.props.history.push('/teacher-home');
                         }
                         else{
@@ -205,9 +210,19 @@ class Login extends Component {
     checkUserStatus(){
 
         const UserEmail = UserProfile.getEmail();
+        const role = UserProfile.getRole();
 
         if (UserEmail){
-            return this.props.history.push('/admin-home');
+            if (role === 'a'){
+                return this.props.history.push('/admin-home');
+        
+            }
+            else if (role === 't'){
+                return this.props.history.push('/teacher-home');
+            }
+            else{
+                return this.props.history.push('/student-home');
+            }
         }
     }
 

@@ -7,6 +7,7 @@ import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
 import NavBar from '../student/StudentNavigation';
 import Wheel from '../student/OptionWheel.js';
+import Announcements from '../student/ClassBasedAnnouncements.js';
 
 class GenericCourse extends React.Component{
 
@@ -91,17 +92,22 @@ class GenericCourse extends React.Component{
       <div className="backGroundSAT">
            <div className="container">
              <div style={{marginTop:'10px'}} className="row">
-                 <div className="col-md-0 col-sm-2"></div>
-                 <div className="col-md-12 col-sm-10">
+                 <div className="col-md-1 col-sm-2"></div>
+                 <div className="col-md-11 col-sm-10">
                       {courseInfo}
                  </div>
              </div>
              <div style={{marginTop:'10px'}} className="row">
-                 <div className="col-md-0 col-sm-2"></div>
-                 <div style={{align: 'left'}} className="col-md-8 col-sm-10">
-            
+                 <div className="col-md-1 col-sm-2"></div>
+                 <div style={{paddingLeft: '28px'}} className="col-md-6 col-sm-10">
+                    <Wheel currentClass={this.state.getVal}/>
                  </div>
-                 <div className="col-md-4 col-sm-10">
+                 <div className="col-md-3 col-sm-10">
+                   <h1 className="studentWords" style={{fontSize: '2.4rem'}}> Announcements</h1>
+                   <hr/>
+                    <Announcements currentClass={this.state.getVal}/>
+                 </div>
+                 <div className="col-md-2 col-sm-0">
 
                  </div>
              </div>

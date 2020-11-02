@@ -128,9 +128,9 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
      {
        upcoming.push(
          <div class="item">
-          <h3> {this.state.assignments[i].assignment_path} </h3>
+          <h3> {this.state.assignments[i].filename} </h3>
           <div class="content">
-            <div class="header"> {this.state.assignments[i].course_code} - {this.state.assignments[i].course_id} </div>
+            <div class="header"> {this.state.assignments[i].assignment_path} - {this.state.assignments[i].course_code} </div>
             <p style={{fontSize: '.9rem'}}> Due: {this.state.assignments[i].due_date} </p>
             <p style={{fontSize: '.9rem'}}> {this.state.assignments[i].max_points} pts </p>
           </div>

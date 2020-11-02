@@ -16,13 +16,18 @@ import StudentCalendar from "./components/student/StudentCalendar.js";
 import StudentChat from "./components/student/StudentChat.js";
 import StudentCourses from "./components/student/Courses.js";
 import StudentSettings from "./components/student/StudentSettings.js";
-import GenericCourse from "./components/student/GenericCourse.js";
 
-import AdminVerifyUser from "./components/admin/VerifyUser.js";
 import AdminAddNewCourse from "./components/admin/AddNewCourse.js";
-import UserDetails from "./components/admin/UserDetails.js";
-import CourseDetails from "./components/admin/CourseDetails.js";
+import AdminVerifyUser from "./components/admin/VerifyUser.js";
 import AdminSettings from "./components/admin/AdminSettings.js";
+import AdminUserDetails from "./components/admin/UserDetails.js";
+import AdminCourseDetails from "./components/admin/CourseDetails.js";
+
+import GenericAssignments from "./components/courses/GenericAssignments.js";
+import GenericChat from "./components/courses/GenericChat.js";
+import GenericGrades from "./components/courses/GenericGrades.js";
+import GenericSettings from "./components/courses/GenericSettings.js";
+import GenericCourse from "./components/student/GenericCourse.js";
 
 
 function App() {
@@ -35,7 +40,7 @@ function App() {
               <Route path="/sign-up" component={SignUp} />
               <Route path="/password-reset" component={Reset} />
               <Route path="/confirmation" component={Confirmation} />
-              <Route path="/change-password" component={ChangePassword} />
+              <Route path="/user/changePassword" component={ChangePassword} />
 
               <Route path="/student-home" component={StudentHome} />
               <Route path="/teacher-home" component={TeacherHome} />
@@ -45,14 +50,19 @@ function App() {
               <Route path="/student-chat" component={StudentChat} />
               <Route path="/student-courses" component={StudentCourses} />
               <Route path="/student-settings" component={StudentSettings} />
-              <Route path="/course102012930" component={GenericCourse} />
-
 
               <Route path="/admin-verify-user" component={AdminVerifyUser} />
               <Route path="/admin-new-course" component={AdminAddNewCourse} />
-              <Route path="/admin-user-details" component={UserDetails} />
-              <Route path="/admin-course-details" component={CourseDetails} />
               <Route path="/admin-settings" component={AdminSettings} />
+              <Route path="/admin-user-details" component={AdminUserDetails} />
+              <Route path="/admin-course-details" component={AdminCourseDetails} />
+
+              <Route path="/courseAssignments093028" component={GenericAssignments} />
+              <Route path="/coursesettings930293" component={GenericSettings} />
+              <Route path="/coursechat28738" component={GenericChat} />
+              <Route path="/coursegrades827398" component={GenericGrades} />
+              <Route path="/course102012930" component={GenericCourse} />
+
 
             </div>
         </BrowserRouter>

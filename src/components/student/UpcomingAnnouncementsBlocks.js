@@ -13,57 +13,64 @@ class UpcomingAnnouncementsBlocks extends React.Component {
 
     this.state = {
 
-        announcements: [
-          {
-            ano_id: 56,
-            ano_text: 'Assignment 5 has been graded.',
-            ano_date: '11/01/2020',
-            course_code: 'CS1111',
-            course_idl: '1',
-          },
-          {
-            ano_id: 57,
-            ano_text: 'Office Hours have been changed this week to: 5-7pm on Thursday.',
-            ano_date: '10/30/2020',
-            course_code: 'CS2771',
-            course_idl: '2',
-          },
-          {
-            ano_id: 58,
-            ano_text: 'Lab 7 will be released this evening.',
-            ano_date: '10/25/2020',
-            course_code: 'CS3440',
-            course_idl: '3',
-          },
-          {
-            ano_id: 59,
-            ano_text: 'Assignment 3 has been graded.',
-            ano_date: '10/27/2020',
-            course_code: 'CS2145',
-            course_idl: '4',
-          },
-          {
-            ano_id: 60,
-            ano_text: 'Project has been released.',
-            ano_date: '10/28/2020',
-            course_code: 'CS3440',
-            course_idl: '3',
-          },
-          {
-            ano_id: 61,
-            ano_text: 'Exam 1 grades have been graded.',
-            ano_date: '10/31/2020',
-            course_code: 'CS1111',
-            course_idl: '1',
-          },
-          {
-            ano_id: 62,
-            ano_text: 'Practice Exam for the Midterm has been opened.',
-            ano_date: '10/18/2020',
-            course_code: 'CS3440',
-            course_idl: '3',
-          },
-        ]
+      announcements: [
+        {
+          ano_id: 56,
+          ano_text: 'Assignment 5 has been graded.',
+          ano_date: '11/01/2020',
+          course_code: 'CS1111',
+          course_idl: 6,
+        },
+        {
+          ano_id: 57,
+          ano_text: 'Office Hours have been changed this week to: 5-7pm on Thursday.',
+          ano_date: '10/30/2020',
+          course_code: 'CS1113',
+          course_idl: 4,
+        },
+        {
+          ano_id: 58,
+          ano_text: 'Lab 7 will be released this evening.',
+          ano_date: '10/25/2020',
+          course_code: 'CS1009',
+          course_idl: 23,
+        },
+        {
+          ano_id: 59,
+          ano_text: 'Assignment 3 has been graded.',
+          ano_date: '10/27/2020',
+          course_code: 'CS1006',
+          course_idl: 11,
+        },
+        {
+          ano_id: 60,
+          ano_text: 'Project has been released.',
+          ano_date: '10/28/2020',
+          course_code: 'CS1006',
+          course_idl: 11,
+        },
+        {
+          ano_id: 61,
+          ano_text: 'Exam 1 grades have been graded.',
+          ano_date: '10/31/2020',
+          course_code: 'CS1111',
+          course_idl: 6,
+        },
+        {
+          ano_id: 62,
+          ano_text: 'Practice Exam for the Midterm has been opened.',
+          ano_date: '10/18/2020',
+          course_code: 'CS2145',
+          course_idl: 12,
+        },
+        {
+          ano_id: 63,
+          ano_text: 'Practice Exam for the Midterm has been closed.',
+          ano_date: '10/20/2020',
+          course_code: 'CS1112',
+          course_idl: 2,
+        },
+      ]
     }
   }
    render(){
