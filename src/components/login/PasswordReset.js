@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Logo from '../.././assets/edLogo.png';
-import { Link } from "react-router-dom";
 import NavBar from './navigation.js';
 
 
@@ -22,6 +21,7 @@ class PasswordReset extends Component {
 
         this.handleEmail = this.handleEmail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.sendPasswordResetEmail = this.sendPasswordResetEmail.bind(this);
     }
 
     initialize = () => {
@@ -32,24 +32,23 @@ class PasswordReset extends Component {
     async sendPasswordResetEmail(event){
         event.preventDefault();
 
-        this.state.PasswordResetEmail.email = document.getElementById("email").value;
-
-        console.log("Email: ", this.state.PasswordResetEmail);
+        var passwordResetEmail = document.getElementById("email").value;
 
         try{
-            const response = await fetch('/user/resetPassword', {
+            const response = await fetch('/user/resetPassword?email=' + passwordResetEmail, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json','Accept': 'application/json'},
-                body: JSON.stringify(this.state.PasswordResetEmail)
             })
             .then(res => res.text())
             .then(text => {
-                
-                this.state.response = text;
-                alert("Password reset email has been sent!");
-                console.log("Response: ",text);
-                
-                return this.props.history.push('/sign-in');
+
+                if (text === "Email sent"){
+                    alert("Password reset email has been sent!");
+                    return this.props.history.push('/sign-in');
+                } else{
+                    alert(text);
+                }
+
                 
             });
 
@@ -110,10 +109,10 @@ class PasswordReset extends Component {
 
                 <div style={{paddingTop: '4%', paddingBottom: '2%'}} className="container">
                     <div style={{paddingRight: '2%', paddingLeft: '2%'}} className="row myIntro">
-                    <div style={{padding: '0% 3% 1% 3%'}} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
+                    <div style={{padding: '0% 3% 1% 3%', paddingTop: '2%'}} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
                         <form onSubmit={this.handleSubmit} noValidate>
                             <img style={{width: '70px', height: '70px'}} src={Logo} alt="edLogo"/>
-                            <h1 style={{paddingBottom: '10px'}}> Password Recovery </h1>
+                            <h1 className="welcome" style={{marginTop: '1.5%', fontSize: '2.5rem', paddingBottom: '10px'}}> Password Recovery </h1>
                             <p> Please enter your email </p>
 
                             <div className="form-group">

@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import googleBtn from '../../assets/btn_google_signin.png';
 import Logo from '../.././assets/edLogo.png';
 import NavBar from './navigation.js';
 import UserProfile from '../.././utils/UserProfile';
 
 import { GoogleLogin } from 'react-google-login';
-import { refreshTokenSetup } from '../.././utils/refreshToken';
 
 
 const clientId = "459178222733-akt56ten5kdp6vshn7n4bbololhh323i.apps.googleusercontent.com";
 
-const responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
-}
+
 
 class Login extends Component {
 
@@ -27,9 +22,7 @@ class Login extends Component {
             errorCount: 0,
             user: {},
             response: '',
-            userProfile:{
-                email: ''
-            },
+            saveUserProfile:{},
             errors:{
                 email: '',
                 password: '',
@@ -40,6 +33,7 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.checkUserStatus = this.checkUserStatus.bind(this);
+        this.googleSignIn = this.googleSignIn.bind(this);
     }
 
     initialize = () => {
@@ -62,22 +56,33 @@ class Login extends Component {
                 headers: {'Content-Type': 'application/json','Accept': 'application/json'},
                 body: JSON.stringify(this.state.user)
             })
-            .then(res => res.text())
-            .then(text => {
-                
-                this.state.response = text;
-                if (text === "User Login Successful!"){
+            .then(res => res.json())
+            .then(jsonData => {
 
-                    UserProfile.setUserProfile(this.state.user);
-                    console.log("Changes made during Login: ", UserProfile.getEmail());
-                    return this.props.history.push('/admin-home');
+                var saveUserProfile = jsonData.result[0];
+
+                if (jsonData.status === "SUCCESS!"){
+
+                    UserProfile.setUserProfile(saveUserProfile);
+                    
+                    if(saveUserProfile.role === 'a'){
+                        return this.props.history.push('/admin-home');
+                    }
+                    else if(saveUserProfile.role === 't'){
+                        return this.props.history.push('/teacher-home');
+                    }
+                    else{
+                        return this.props.history.push('/student-home');
+                    }
                 } else{
-                    alert(text);
+                    alert(jsonData.status);
                 }
+                
+                
             });
 
         } catch (error){
-            alert(error);
+            alert("Incorrect email or password!");
         }
 
     } 
@@ -130,46 +135,63 @@ class Login extends Component {
         this.setState({password: document.getElementById("password").value});
     }
 
+    googleSignInFailed (res){
+
+        console.log('Google sign in failed!!');
+        console.log(res);
+
+    }
 
     async googleSignIn (res){
-
-        console.log(res.profileObj);
 
         if("error" in res){
             alert('Sign in was not successful');
         }else{
             
             try{
-                const response = await fetch('/user/login', {
+                
+                var googleUser = {};
+                googleUser.email = res.profileObj.email;
+
+                const response = await fetch('/user/googleLogin?email=' + res.profileObj.email, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json','Accept': 'application/json'},
-                    body: JSON.stringify(res.profileObj.email)
                 })
-                .then(res => res.text())
-                .then(text => {
-                    
-                    if (text === "User Login Successful!"){
+                .then(res => res.json())
+                .then(jsonData => {
 
-                        alert("Login Successful");
+                    if (jsonData.status === "SUCCESS!"){
 
+                        var saveUserProfile = jsonData.result[0];
+                        UserProfile.setUserProfile(saveUserProfile);
 
-
-                        return this.props.history.push('/admin-home');
+                        if(saveUserProfile.role === 'a'){
+                            return this.props.history.push('/admin-home');
+                        }
+                        else if(saveUserProfile.role === 't'){
+                            return this.props.history.push('/teacher-home');
+                        }
+                        else{
+                            return this.props.history.push('/student-home');
+                        }
 
                     } 
                     
-                    else if (text === "Username is not valid"){
+                    else if (jsonData.status !== "Username is not valid"){
 
-                        alert("No account created");
+                        alert("Kindly create an account first!");
                         return this.props.history.push('/sign-up');
                     } 
                     
                     else{
-                        alert(text);
+                        alert(jsonData.status);
                     }
+
+                    
                 });
     
             } catch (error){
+                console.log("error");
                 alert(error);
             }
             
@@ -208,9 +230,9 @@ class Login extends Component {
 
                 <div style={{paddingTop: '4%', paddingBottom: '2%'}} className="container">
                     <div style={{paddingRight: '2%', paddingLeft: '2%'}} className="row myIntro">
-                    <div style={{padding: '0% 3% 1% 3%'}} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
+                    <div style={{padding: '0% 3% 1% 3%', paddingTop: '2%'}} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
                         <form onSubmit={this.handleSubmit} noValidate>
-                            <img style={{width: '70px', height: '70px', marginTop: '1.5%'}} src={Logo} alt="edLogo"/>
+                            <img style={{width: '70px', height: '70px'}} src={Logo} alt="edLogo"/>
                             <h1 className="welcome" style={{marginTop: '1.5%', fontSize: '2.5rem', paddingBottom: '10px'}}> Login to EduForm </h1>
 
                             <div className="form-group">
@@ -224,6 +246,7 @@ class Login extends Component {
                             </div>
 
                             <button type="submit" className="btn btn-block log" style={{fontSize: '1.2rem', backgroundColor: '#febf63'}}> Log In </button>
+                            
                             <p style={{fontSize: '1rem', marginTop: "5px"}} className="forgot-password text-right">
                                 <Link to="/password-reset" style={{color:'#febf63'}}>Forgot password?</Link>
                             </p>
@@ -242,7 +265,7 @@ class Login extends Component {
                                 <GoogleLogin
                                     clientId={clientId}
                                     onSuccess={this.googleSignIn}
-                                    onFailure={this.googleSignIn}
+                                    onFailure={this.googleSignInFailed}
                                 >
                                 
                                     <span> Login with Google</span>

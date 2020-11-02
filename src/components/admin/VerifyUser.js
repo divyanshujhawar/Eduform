@@ -1,71 +1,141 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Semantic from 'semantic-ui-css/semantic.min.css';
-import Personal from '../../assets/cat.jpg';
-import { Row, Column, Container } from 'react-foundation';
+import { Row, Column } from 'react-foundation';
 import AdminNavBar from './AdminNavBar.js';
 import UserCard from './UserCard.js';
 
 
 class VerifyUser extends Component {
 
-  constructor(props){
-    super(props);
-    this.state ={
-      user: [
-        {
-          id: 1,
-          firstName: 'Divyanshu',
-          lastName: 'J',
-          email: 'divyanshu@iu.edu'
-        },
-        {
-          id: 2,
-          firstName: 'Bryant',
-          lastName: 'H',
-          email: 'bryant@iu.edu'
-        },
-        {
-          id: 3,
-          firstName: 'Shubham',
-          lastName: 'G',
-          email: 'shubham@iu.edu'
+    constructor(props) {
+        super(props);
+        this.state = {
+            unverifiedUsers: [],
+            user: [
+                {
+                    role: 's',
+                    firstName: 'Divyanshu',
+                    lastName: 'Jhawar',
+                    email: 'divyanshu@iu.edu',
+                    phone: '1010101010'
+                },
+                {
+                    role: 'a',
+                    firstName: 'Bryant',
+                    lastName: 'Hunsberger',
+                    email: 'bryant@iu.edu'
+                },
+                {
+                    role: 't',
+                    firstName: 'Shubham',
+                    lastName: 'Gaikwad',
+                    email: 'shubham@iu.edu'
+                },
+                {
+                    role: 's',
+                    firstName: 'Divyanshu',
+                    lastName: 'Jhawar',
+                    email: 'divyanshu@iu.edu'
+                },
+                {
+                    role: 'a',
+                    firstName: 'Bryant',
+                    lastName: 'Hunsberger',
+                    email: 'bryant@iu.edu'
+                },
+                {
+                    role: 't',
+                    firstName: 'Shubham',
+                    lastName: 'Gaikwad',
+                    email: 'shubham@iu.edu'
+                },
+
+            ]
         }
-      ]
+
+        this.getUnverifiedUsers = this.getUnverifiedUsers.bind(this);
     }
-  }
-  
-  verify(id){
-    this.setState({user: this.state.user.filter(user => user.id !== id)});
-  }
 
-  render() {
-    let userCards = this.state.user.map(user => {
-      return(
-        <div className="userCardColumn">
-        <Column sm="4">
-          <UserCard key={personalbar.id} verify={this.verify.bind(this)} user={user}/>
-        </Column>
-        </div>
-      )
-    })
-    return(
-      <div className="backGroundSAT">
-        <div >
-          <AdminNavBar/>
-        </div>
+    componentDidMount(){
+        this.getUnverifiedUsers();
+    }
 
-        <div className="userCardComponent">
-            <Row>
-              {userCards}
-            </Row>
 
-        </div>
-      </div>
-    );
-  }
+    verify(email, role) {
+        console.log(email, role);
+
+        var isVerified = true;
+        var userUpdateRequest = {
+            role: role,
+            isVerified: isVerified
+        };
+
+        try {
+            const response = fetch('admin/updateUser/' + email, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(userUpdateRequest)
+            })
+                .then(res => res.text())
+                .then(text => {
+
+                    alert(text);
+
+                });
+
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+    getUnverifiedUsers() {
+
+        try {
+            const response = fetch('/admin/getUnverifiedUsers', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            })
+                .then(res => res.json())
+                .then(jsonData => {
+
+
+                    this.setState({
+                        unverifiedUsers: jsonData.result
+                    });
+
+                });
+
+        } catch (error) {
+            alert(error);
+        }
+
+    }
+
+    render() {
+
+        let userCards = this.state.unverifiedUsers.map(user => {
+            return (
+                <div className="userCardColumn">
+                    <Column sm="4">
+                        <UserCard key={personalbar.id} verify={this.verify.bind(this)} user={user} />
+                    </Column>
+                </div>
+            )
+        })
+        return (
+            <div className="backGroundSAT">
+                <div >
+                    <AdminNavBar />
+                </div>
+
+                <div className="userCardComponent" style={{marginTop: '3%'}}>
+                    <Row>
+                        {userCards}
+                    </Row>
+
+                </div>
+            </div>
+        );
+    }
 };
 
 export default VerifyUser;

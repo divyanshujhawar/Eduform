@@ -42,18 +42,15 @@ class AdminNavBar extends Component{
 
     render() {
 
-        this.checkUserStatus();
+        {/*this.checkUserStatus();*/}
 
         return (
             <div className="container">
 
-            <div style={{height:'515px'}} className="row">
 
-            </div>
-
-            <div style={{marginTop: '6%'}} className="row">
+            <div className="row">
             <div className="col-1">
-                <div style={{width: '131px',backgroundColor: '#febf63'}} className="ui visible sidebar inverted vertical menu">
+                <div style={{width: '131px',backgroundColor: '#1089ff'}} className="ui visible sidebar inverted vertical menu">
                 <h1 className="welcome" style={{paddingTop: '3%', fontSize: '2.1rem', color: 'black'}}> Eduform </h1>
                 <hr style={{backgroundColor: '#1089ff', marginBottom: '7%'}} />
                 <div style={{backgroundColor: 'white',paddingLeft: '15%', paddingRight: '15%'}}>
@@ -61,25 +58,37 @@ class AdminNavBar extends Component{
                 </div>
                 <Link to='./admin-home'>
                     <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                    <i style={{fontSize: '1.5rem', color:'#1089ff'}} className="fas fa-home"></i>
+                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-home"></i>
                     <h3 style={{marginTop: '2px', marginBottom: '0px', color: 'black'}}> Home </h3>
                     </a>
                 </Link>
                 <Link to='./admin-verify-user'>
                     <a style={{paddingBottom: '10px'}} className="item">
-                    <i style={{fontSize: '1.5rem', color:'#1089ff'}} className="fas fa-book"></i>
+                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-user-check"></i>
                     <h3 style={{marginTop: '2px',marginBottom: '0px',color: 'black'}}> Verify Users </h3>
                     </a>
                 </Link>
                 <Link to='./admin-new-course'>
                     <a style={{paddingBottom: '10px'}} className="item">
-                    <i style={{fontSize: '1.5rem', color:'#1089ff'}} className="far fa-comment"></i>
+                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fa fa-address-card"></i>
                     <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> Add Courses </h3>
                     </a>
                 </Link>
+                <Link to='./admin-user-details'>
+                    <a style={{paddingBottom: '10px'}} className="item">
+                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-users"></i>
+                    <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> User Details </h3>
+                    </a>
+                </Link>
+                <Link to='./admin-course-details'>
+                    <a style={{paddingBottom: '10px'}} className="item">
+                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-folder-open"></i>
+                    <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> Course Details </h3>
+                    </a>
+                </Link>
                 <Link to='./admin-settings'>
-                    <a style={{paddingBottom: '10px'}} style={{fontSize: '1.5rem', color:'#1089ff'}} className="item">
-                    <i class="fas fa-cogs"></i>
+                    <a style={{paddingBottom: '10px'}} style={{fontSize: '1.5rem', color:'#febf63'}} className="item">
+                    <i className="fas fa-cogs"></i>
                     <h3 style={{marginTop: '2px',color: 'black', marginBottom: '0px'}}> Settings </h3>
                     </a>
                 </Link>

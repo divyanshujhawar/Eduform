@@ -116,10 +116,10 @@
   margin-left: 20px;
 }
 
-
 .divrole{
   text-align: right;
 }
+
 
 /* Course Form admin */
 
@@ -190,4 +190,64 @@ button:hover {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+}
+
+
+
+
+#outer
+{
+    width:100%;
+    text-align: center;
+    margin-top: 2%;
+}
+.inner
+{
+    display: inline-block;
+    margin: 2%;
+    height: 30px;
+}
+
+
+.userDisplay{
+    background-color: #febf63;
+    color: black;
+    border: 2px solid orange;
+}
+
+
+
+.ud-header{
+    width: 100%;
+    background-color: white;
+    background-repeat: repeat;
+    position: relative;
+    background-size: cover;
+}
+
+
+.ud-table-comp{
+    position: relative;
+}
+
+table {
+    justify-content: center;
+    border: 1px solid gray;
+}
+td {
+    border: 1px solid gray;
+    width: 12em;
+    font-size: 20px;
+}
+
+thead{
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+
+.stock-container{
+    margin-top: 100px;
+    margin-left: 300px;
 }

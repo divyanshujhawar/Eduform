@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import Background from '../../assets/wall4.jpg';
+import { Link } from "react-router-dom";
 import Logo from '../../assets/edLogo.png';
 
 const navigation = () => {

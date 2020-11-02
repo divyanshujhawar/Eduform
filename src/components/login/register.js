@@ -6,26 +6,7 @@ import NavBar from './navigation.js';
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
 const validPhoneRegex = RegExp(/^\d+$/i);
-
-const roleOptions = ['admin', 'teacher', 'student'];
-
-const validateForm = (errors) => {
-    let valid = true;
-    Object.values(errors).forEach(
-    // if we have an error string, set valid to false
-    (val) => val.length > 0 && (valid = false)
-    );
-    return valid;
-}
-
-const countErrors = (errors) => {
-    let count = 0;
-    Object.values(errors).forEach(
-      (val) => val.length > 0 && (count = count+1)
-    );
-    return count;
-}
-
+const bcrypt = require('bcryptjs');
 
 class Register extends Component {
 
@@ -125,30 +106,41 @@ class Register extends Component {
     async registerUser(event){
 
         event.preventDefault();
+        
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(this.state.password, salt);
+
+        console.log(hash);
 
         this.state.user.firstName = this.state.firstName;
         this.state.user.lastName = this.state.lastName;
         this.state.user.email = this.state.email;
-        this.state.user.phoneNumber = parseInt(this.state.phone, 10);
+        this.state.user.phoneNumber = this.state.phone;
         this.state.user.role = this.state.role;
         this.state.user.password = this.state.password;
         
+        console.log(this.state.user);
+
         try{
             const response = await fetch('/user/registration', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json','Accept': 'application/json'},
                 body: JSON.stringify(this.state.user)
             })
-            .then(res => res.text())
-            .then(text => {
-                
+            .then(res => {
+                 
+                console.log(res);
+
+                /*
                 this.state.response = text;
-                if (text !== "Success!"){
+                if (text !== "SUCCESS!"){
                     alert("This email address already exists");
                 } else{
-                    alert("Verfication email has been sent. Kindly verify it!");
+                    alert("Please wait for the admin to verify your account!");
                     return this.props.history.push('/sign-in');
                 }
+                */
             });
 
             console.log(response.text());
@@ -197,7 +189,7 @@ class Register extends Component {
 
 
     render() {
-        const {errors, formValid} = this.state;
+        const {errors} = this.state;
         return (
         <div className="App2">
 
@@ -207,9 +199,9 @@ class Register extends Component {
 
             <div style={{paddingTop: '4%', paddingBottom: '2%'}} className="container">
                 <div style={{paddingRight: '2%', paddingLeft: '2%'}} className="row myIntro">
-                <div style={{padding: '0% 3% 1% 3%'}} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
+                <div style={{padding: '0% 3% 1% 3%', paddingTop: '2%'}} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
                     <form onSubmit={this.handleSubmit} noValidate>
-                    <img style={{width: '70px', height: '70px', marginTop: '1.5%'}} src={Logo} alt="edLogo"/>
+                    <img style={{width: '70px', height: '70px'}} src={Logo} alt="edLogo"/>
                     <h1 className="welcome" style={{marginTop: '1.5%', fontSize: '2.5rem', paddingBottom: '10px'}}> Register for EduForm! </h1>
                             <div className="form-group">
                                 <input type="text" style={{fontSize: '.9rem'}} id="firstName" name="firstName" className="form-control" placeholder="First name" onChange={this.handleChange} noValidate/>

@@ -14,15 +14,15 @@ import AdminHome from "./components/dashboard/AdminHome.js";
 
 import StudentCalendar from "./components/student/StudentCalendar.js";
 import StudentChat from "./components/student/StudentChat.js";
-import StudentCourses from "./components/student/StudentCourses.js";
+import StudentCourses from "./components/student/Courses.js";
 import StudentSettings from "./components/student/StudentSettings.js";
+import GenericCourse from "./components/student/GenericCourse.js";
 
-import AdminAddNewCourse from "./components/admin/AddNewCourse.js";
 import AdminVerifyUser from "./components/admin/VerifyUser.js";
+import AdminAddNewCourse from "./components/admin/AddNewCourse.js";
+import UserDetails from "./components/admin/UserDetails.js";
+import CourseDetails from "./components/admin/CourseDetails.js";
 import AdminSettings from "./components/admin/AdminSettings.js";
-
-import genericCourse from "./components/student/GenericCourse.js";
-
 
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
               <Route path="/password-reset" component={Reset} />
               <Route path="/confirmation" component={Confirmation} />
               <Route path="/change-password" component={ChangePassword} />
+
               <Route path="/student-home" component={StudentHome} />
               <Route path="/teacher-home" component={TeacherHome} />
               <Route path="/admin-home" component={AdminHome} />
@@ -44,11 +45,13 @@ function App() {
               <Route path="/student-chat" component={StudentChat} />
               <Route path="/student-courses" component={StudentCourses} />
               <Route path="/student-settings" component={StudentSettings} />
-              <Route path="/student-generic-course" component={genericCourse} />
+              <Route path="/course102012930" component={GenericCourse} />
 
 
               <Route path="/admin-verify-user" component={AdminVerifyUser} />
               <Route path="/admin-new-course" component={AdminAddNewCourse} />
+              <Route path="/admin-user-details" component={UserDetails} />
+              <Route path="/admin-course-details" component={CourseDetails} />
               <Route path="/admin-settings" component={AdminSettings} />
 
             </div>

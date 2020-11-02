@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Logo from '../.././assets/edLogo.png';
-import { Link } from "react-router-dom";
 import NavBar from './navigation.js';
 
 const validateForm = (errors) => {
