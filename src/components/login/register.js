@@ -128,11 +128,10 @@ class Register extends Component {
                 headers: {'Content-Type': 'application/json','Accept': 'application/json'},
                 body: JSON.stringify(this.state.user)
             })
-            .then(res => {
-                 
-                console.log(res);
+            .then(res => res.text())
+            .then(text => {
 
-                /*
+                
                 this.state.response = text;
                 if (text !== "SUCCESS!"){
                     alert("This email address already exists");
@@ -140,7 +139,7 @@ class Register extends Component {
                     alert("Please wait for the admin to verify your account!");
                     return this.props.history.push('/sign-in');
                 }
-                */
+                
             });
 
             console.log(response.text());

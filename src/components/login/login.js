@@ -59,9 +59,11 @@ class Login extends Component {
             .then(res => res.json())
             .then(jsonData => {
 
-                var saveUserProfile = jsonData.result[0];
+                
 
                 if (jsonData.status === "SUCCESS!"){
+
+                    var saveUserProfile = jsonData.result[0];
 
                     UserProfile.setUserProfile(saveUserProfile);
                     
@@ -82,7 +84,7 @@ class Login extends Component {
             });
 
         } catch (error){
-            alert("Incorrect email or password!");
+            alert(error);
         }
 
     } 
