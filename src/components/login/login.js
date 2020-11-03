@@ -8,7 +8,10 @@ import UserProfile from '../.././utils/UserProfile';
 import { GoogleLogin } from 'react-google-login';
 
 
-const clientId = "459178222733-akt56ten5kdp6vshn7n4bbololhh323i.apps.googleusercontent.com";
+//const clientId = "459178222733-akt56ten5kdp6vshn7n4bbololhh323i.apps.googleusercontent.com";
+
+// Works with both local and AWS
+const clientId = "595753582109-1mb2nlon8o9mrc89vs225527hsfaknfv.apps.googleusercontent.com";
 
 
 
