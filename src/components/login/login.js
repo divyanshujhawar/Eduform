@@ -12,8 +12,7 @@ import { GoogleLogin } from 'react-google-login';
 
 // Works with both local and AWS
 const clientId = "595753582109-1mb2nlon8o9mrc89vs225527hsfaknfv.apps.googleusercontent.com";
-
-
+const bcrypt = require('bcryptjs');
 
 class Login extends Component {
 
@@ -52,9 +51,12 @@ class Login extends Component {
         event.preventDefault();
 
         this.state.user.email = document.getElementById("email").value;
-        this.state.user.password = document.getElementById("password").value;
 
-        console.log(this.state.user);
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(document.getElementById("password").value, salt);
+
+        //this.state.user.password = hash;
+        this.state.user.password = document.getElementById("password").value;
 
         try{
             const response = await fetch('/user/login', {
@@ -188,7 +190,6 @@ class Login extends Component {
                     } 
                     
                     else if (jsonData.status !== "Username is not valid"){
-
                         alert("Kindly create an account first!");
                         return this.props.history.push('/sign-up');
                     } 
@@ -201,7 +202,6 @@ class Login extends Component {
                 });
     
             } catch (error){
-                console.log("error");
                 alert(error);
             }
             

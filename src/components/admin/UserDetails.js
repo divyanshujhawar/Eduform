@@ -51,6 +51,7 @@ class UserDetails extends Component {
         this.getUsers = this.getUsers.bind(this);
         this.getStudents = this.getStudents.bind(this);
         this.getTeachers = this.getTeachers.bind(this);
+        this.decideRole = this.decideRole.bind(this);
 
     }
 
@@ -58,6 +59,11 @@ class UserDetails extends Component {
         this.getUsers();
         this.getStudents();
         this.getTeachers();
+
+
+        //console.log(this.state.users);
+        //console.log(this.state.teachers);
+        //console.log(this.state.students);
 
     }
 
@@ -99,6 +105,9 @@ class UserDetails extends Component {
                     this.setState({
                         students: jsonData.result
                     });
+
+                    console.log("This state: ", this.state.students);
+                    console.log("Data we recieve: ", jsonData.result);
 
                 });
 
@@ -154,6 +163,16 @@ class UserDetails extends Component {
         });
     }
 
+    decideRole(data){
+        if(data === 'a'){
+            return 'admin';
+        } else if(data === 't'){
+            return 'teacher';
+        } else{
+            return 'student';
+        }
+    }
+
     render() {
 
         return(
@@ -196,7 +215,7 @@ class UserDetails extends Component {
                                         lastName={data.lastName}
                                         email={data.email}
                                         phoneNumber={data.phoneNumber}
-                                        role={data.role}
+                                        role={this.decideRole(data.role)}
                                         verified={JSON.stringify(data.verified)}
                                     />
                                 </div>
@@ -208,58 +227,6 @@ class UserDetails extends Component {
             </div>
         );
     }
-
-
-
-    /*
-    render() {
-
-        
-        return (
-            <div>
-                <div id="ud-header" className="ud-header" style={{ backgroundColor: '#DEDEDE', height: '200px' }}>
-                    <div >
-                        <AdminNavBar />
-                    </div>
-
-                    <div id="outer">
-                        <div className="inner"><button type="submit" className="userDisplay" onClick={this.onClick} >Users</button></div>
-                        <div className="inner"><button type="submit" className="userDisplay" onClick={this.onClick}>Teachers</button></div>
-                        <div className="inner"><button type="submit" className="userDisplay" onClick={this.onClick}>Students</button></div>
-                    </div>
-
-
-
-                </div>
-
-                <div className="ud-table-comp">
-
-
-                    <table className="ud-table">
-                        <thead>
-                            <tr>
-                                <th colSpan='6'>User Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                Object.keys(this.state.userDetails).map((data,key) => {
-                                    return (
-                                        <tr key={key}>
-                                            <td>{data.firstName}</td>
-                                            <td>{data.lastName}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-        );
-    }
-    */
 
 }
 

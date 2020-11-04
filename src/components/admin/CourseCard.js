@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    Card,CardBody,CardTitle
   } from 'reactstrap';
 
 class CourseCard extends Component{
@@ -13,15 +12,15 @@ class CourseCard extends Component{
 
 
     render(){
-        let {cno, courseName, instructor} = this.props.courses;
+        let {courseCode, courseName, courseDetails} = this.props.courses;
 
         return (
             <div className="course-card">
                 <Card width="100%"> 
                     <CardBody>
-                        <CardTitle>{cno}</CardTitle>
+                        <CardTitle>{courseCode}</CardTitle>
                         <CardTitle>{courseName}</CardTitle>
-                        <CardTitle>{instructor}</CardTitle>
+                        <CardTitle>{courseDetails}</CardTitle>
 
                     </CardBody>
                 </Card>

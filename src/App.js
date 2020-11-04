@@ -61,7 +61,7 @@ function App() {
               <Route path="/coursesettings930293" component={GenericSettings} />
               <Route path="/coursechat28738" component={GenericChat} />
               <Route path="/coursegrades827398" component={GenericGrades} />
-              <Route path="/course102012930" component={GenericCourse} />
+              <Route exact path="/course/:courseCode" component={GenericCourse} />
 
 
             </div>

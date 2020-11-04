@@ -76,8 +76,9 @@ class AddNewCourse extends Component {
 
         this.state.courseRequest.courseCode = this.state.courseCode;
         this.state.courseRequest.courseName = this.state.courseName;
+        this.state.courseRequest.courseDescription = this.state.courseDescription;
 
-        console.log(this.state.courseRequest);
+        console.log("CourseRequest: ", this.state.courseRequest);
 
         try{
             const response = await fetch('/admin/addCourse', {
@@ -90,7 +91,7 @@ class AddNewCourse extends Component {
                 
 
                 if (text === "SUCCESS!"){
-                    document.getElementById("create-course-form").reset();
+                    document.getElementById("course-form").reset();
                     alert('Course successfully added');
                 } else{
                     alert(text);

@@ -107,20 +107,25 @@ class Register extends Component {
 
         event.preventDefault();
         
-
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(this.state.password, salt);
-
-        console.log(hash);
-
         this.state.user.firstName = this.state.firstName;
         this.state.user.lastName = this.state.lastName;
         this.state.user.email = this.state.email;
         this.state.user.phoneNumber = this.state.phone;
-        this.state.user.role = this.state.role;
-        this.state.user.password = this.state.password;
+        if(this.state.role === 'admin'){
+            this.state.user.role = 'a';
+        } else if(this.state.role === 'teacher'){
+            this.state.user.role = 't';
+        } else{
+            this.state.user.role = 's';
+        }
+
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(this.state.password, salt);
+
+        this.state.user.password = hash;
         
-        console.log(this.state.user);
+
 
         try{
             const response = await fetch('/user/registration', {
@@ -131,6 +136,7 @@ class Register extends Component {
             .then(res => res.text())
             .then(text => {
                  
+                console.log("TEXT: ", text);
                 this.state.response = text;
                 if (text !== "SUCCESS!"){
                     alert("This email address already exists");
@@ -140,8 +146,6 @@ class Register extends Component {
                 }
                 
             });
-
-            console.log(response.text());
 
         } catch (error){
             console.log(error);
@@ -220,10 +224,19 @@ class Register extends Component {
                                 <input type="phone" style={{fontSize: '.9rem'}} id="phone" name="phone" className="form-control" placeholder="Phone Number" onChange={this.handleChange} noValidate/>
                                 {errors.phone.length > 0 && <span className='error'>{errors.phone}</span>}
                             </div>
-
+                            {/*
                             <div className="form-group">
                                 <input type="text" style={{fontSize: '.9rem'}} id="role" name="role" className="form-control" placeholder="Role(a/t/s)" onChange={this.handleChange} noValidate/>
                                 {errors.role.length > 0 && <span className='error'>{errors.role}</span>}
+                            </div>
+                            */}
+
+                            <div className="form-group" style ={{alignSelf: 'center', backgroundColor: '#1089ff'}}>
+                                <select name="role" id="role" name="role" style={{fontSize: '.9rem'}}>
+                                    <option>admin</option>
+                                    <option>teacher</option>
+                                    <option>student</option>
+                                </select>
                             </div>
 
 

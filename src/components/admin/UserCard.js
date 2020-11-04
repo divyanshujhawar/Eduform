@@ -12,7 +12,17 @@ class UserCard extends Component{
 
 
     render(){
-        let {email, firstName, lastName, role} = this.props.user;
+        let {email, firstName, lastName, r} = this.props.user;
+
+        let role = '';
+
+        if(r==='a'){
+            role = 'admin';
+        } else if(role === 't'){
+            role = 'teacher';
+        } else{
+            role = 'student';
+        }
 
         return (
             <div style={{paddingTop: '8%'}}>
@@ -24,9 +34,9 @@ class UserCard extends Component{
                             <CardTitle style={{color: 'white'}}>{firstName} {lastName}</CardTitle>
                             <div style ={{alignSelf: 'center', backgroundColor: '#1089ff'}}>
                                 <select name="role" id="role" name="role" style={{fontSize: '.9rem', height: '30px', paddingTop: '2%'}}>
-                                    <option>a</option>
-                                    <option>t</option>
-                                    <option>s</option>
+                                    <option>admin</option>
+                                    <option>teacher</option>
+                                    <option>student</option>
                                     <option selected="selected">{role}</option>
                                 </select>
                             </div>

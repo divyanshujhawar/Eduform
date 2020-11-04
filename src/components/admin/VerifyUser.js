@@ -9,47 +9,7 @@ class VerifyUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            unverifiedUsers: [],
-            user: [
-                {
-                    role: 's',
-                    firstName: 'Divyanshu',
-                    lastName: 'Jhawar',
-                    email: 'divyanshu@iu.edu',
-                    phone: '1010101010'
-                },
-                {
-                    role: 'a',
-                    firstName: 'Bryant',
-                    lastName: 'Hunsberger',
-                    email: 'bryant@iu.edu'
-                },
-                {
-                    role: 't',
-                    firstName: 'Shubham',
-                    lastName: 'Gaikwad',
-                    email: 'shubham@iu.edu'
-                },
-                {
-                    role: 's',
-                    firstName: 'Divyanshu',
-                    lastName: 'Jhawar',
-                    email: 'divyanshu@iu.edu'
-                },
-                {
-                    role: 'a',
-                    firstName: 'Bryant',
-                    lastName: 'Hunsberger',
-                    email: 'bryant@iu.edu'
-                },
-                {
-                    role: 't',
-                    firstName: 'Shubham',
-                    lastName: 'Gaikwad',
-                    email: 'shubham@iu.edu'
-                },
-
-            ]
+            unverifiedUsers: []
         }
 
         this.getUnverifiedUsers = this.getUnverifiedUsers.bind(this);
@@ -79,6 +39,8 @@ class VerifyUser extends Component {
                 .then(text => {
 
                     alert(text);
+                    this.getUnverifiedUsers();
+                    console.log(this.state.unverifiedUsers);
 
                 });
 

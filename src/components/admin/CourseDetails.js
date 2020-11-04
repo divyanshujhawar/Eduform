@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AdminNavBar from './AdminNavBar.js';
 
 
-const CourseDisplay = ({ courseCode, courseName}) => {
+const CourseDisplay = ({ courseCode, courseName, courseDetails}) => {
     if (!courseCode) return <div />;
     return (
         <table >
@@ -13,6 +13,9 @@ const CourseDisplay = ({ courseCode, courseName}) => {
                     </td>
                     <td>
                         <h5>{courseName}</h5>
+                    </td>
+                    <td>
+                        <h5>{courseDetails}</h5>
                     </td>
                 </tr>
             </tbody>
@@ -72,6 +75,7 @@ class CourseDetails extends Component {
                                 <tr>
                                     <td style={{padding: '10px'}}>Course Code</td>
                                     <td>Course Name</td>
+                                    <td>Course Description</td>
                                 </tr>
                             </thead>
                         </table>
@@ -82,6 +86,7 @@ class CourseDetails extends Component {
                                         key={key}
                                         courseCode={data.courseCode}
                                         courseName={data.courseName}
+                                        courseDetails={data.courseDetails}
                                     />
                                 </div>
                             );
