@@ -40,7 +40,7 @@ class AdminNavBar extends Component{
 
     render() {
 
-        {/*this.checkUserStatus();*/}
+        this.checkUserStatus();
 
         return (
             <div className="container">
@@ -55,25 +55,25 @@ class AdminNavBar extends Component{
                     <img style={{width: '65px', height: '65px', margin: 'auto', marginBottom: '3%', marginTop: '3%'}} className="rounded-circle" src={Personal} />
                 </div>
 
-                <Link to='./admin-verify-user'>
+                <Link to='/admin-verify-user'>
                     <a style={{marginTop: '15px',paddingBottom: '10px'}} className="item">
                     <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-user-check"></i>
                     <h3 style={{marginTop: '2px',marginBottom: '0px',color: 'black'}}> Verify Users </h3>
                     </a>
                 </Link>
-                <Link to='./admin-new-course'>
+                <Link to='/admin-new-course'>
                     <a style={{paddingBottom: '10px'}} className="item">
                     <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fa fa-address-card"></i>
                     <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> Add Courses </h3>
                     </a>
                 </Link>
-                <Link to='./admin-user-details'>
+                <Link to='/admin-user-details'>
                     <a style={{paddingBottom: '10px'}} className="item">
                     <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-users"></i>
                     <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> User Details </h3>
                     </a>
                 </Link>
-                <Link to='./admin-course-details'>
+                <Link to='/admin-course-details'>
                     <a style={{paddingBottom: '10px'}} className="item">
                     <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-folder-open"></i>
                     <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> Course Details </h3>

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 
-class StudentNavigation extends React.Component {
+import UserProfile from '../.././utils/UserProfile';
+
+class StudentNavigation extends Component {
 
 
     constructor(props) {
@@ -62,9 +64,35 @@ class StudentNavigation extends React.Component {
             //tridary: tri,
             //typeOfWords: wordType
 
+            userProfile:{}
+
+        }
+
+        this.logUserOut = this.logUserOut.bind(this);
+        this.checkUserStatus = this.checkUserStatus.bind(this);
+    }
+
+    logUserOut(){
+
+        this.state.userProfile.email = ''
+
+        UserProfile.setEmail(this.state.userProfile);
+
+        return this.props.history.push('/sign-in');
+
+    }
+
+    checkUserStatus(){
+        const UserEmail = UserProfile.getEmail();
+
+        if (UserEmail === ""){
+            return this.props.history.push('/sign-in');
         }
     }
+
     render() {
+
+        this.checkUserStatus();
 
         var ccssType;
         if (this.props.colorspass) {
@@ -144,7 +172,7 @@ class StudentNavigation extends React.Component {
                                 <h3 className={wordType} style={{ marginTop: '2px', color: 'black', marginBottom: '0px' }}> Settings </h3>
                             </a>
                         </Link>
-                        <Link to='/sign-in'>
+                        <Link onClick={this.logUserOut}>
                             <a style={{ position: 'absolute', bottom: '0' }} className="item">
                                 <h3 className={wordType} style={{ marginTop: '2px', color: 'black' }}> Log Out </h3>
                             </a>
@@ -156,4 +184,4 @@ class StudentNavigation extends React.Component {
     }
 }
 
-export default StudentNavigation;
+export default withRouter (StudentNavigation);

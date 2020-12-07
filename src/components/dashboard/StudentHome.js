@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Link, Route , withRouter } from "react-router-dom";
 import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
@@ -14,10 +14,9 @@ import UserProfile from '../.././utils/UserProfile';
 import CourseProfile from '../.././utils/CourseProfile';
 
 
-class StudentHome extends React.Component {
+class StudentHome extends Component {
     constructor(props) {
         super(props);
-
 
         var separator = null;
 
@@ -193,4 +192,4 @@ class StudentHome extends React.Component {
     }
 }
 
-export default StudentHome;
+export default withRouter (StudentHome);

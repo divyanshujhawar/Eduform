@@ -1,21 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 
-class TeacherNavigation extends React.Component{
-  
-  render(){
+import UserProfile from '../.././utils/UserProfile';
 
-    this.state = {
-      toggler: this.props.thetog,
- 
+class TeacherNavigation extends Component {
 
-  }
+    
+    constructor(props) {
+        super(props);
 
-    var ccssType;
+        this.state = {
+            toggler: this.props.thetog,
+
+            userProfile:{}
+        }
+
+        this.logUserOut = this.logUserOut.bind(this);
+        this.checkUserStatus = this.checkUserStatus.bind(this);
+    }
+
+    logUserOut(){
+
+        this.state.userProfile.email = ''
+
+        UserProfile.setEmail(this.state.userProfile);
+
+        return this.props.history.push('/sign-in');
+
+    }
+
+    checkUserStatus(){
+        const UserEmail = UserProfile.getEmail();
+
+        if (UserEmail === ""){
+            return this.props.history.push('/sign-in');
+        }
+    }
+
+
+    render() {
+
+        this.checkUserStatus();
+
+        var ccssType;
         if (this.props.colorspass) {
             ccssType = this.props.colorspass;
         }
@@ -56,8 +87,10 @@ class TeacherNavigation extends React.Component{
             tri = eduVals[2];
             wordType = eduVals[3];
         }
-  return(
-    <div style={{ marginTop: '6%' }} className="row">
+
+
+        return (
+            <div style={{ marginTop: '6%' }} className="row">
                 <div className="col-1">
                     <div style={{ width: '131px', backgroundColor: prim }} className="ui visible sidebar inverted vertical menu">
                         <h1 className="welcome" style={{ paddingTop: '3%', fontSize: '2.1rem', color: 'black' }}> Eduform </h1>
@@ -67,7 +100,7 @@ class TeacherNavigation extends React.Component{
                         </div>
 
                         <Link to={{ pathname: '/teacher-home', toggleState: this.state.toggler, colors2: ccssType }}>
-                            <a style={{ marginTop: '10px', paddingBottom: '10px' }} style={{ fontSize: '1.5rem', color: sec }}className="item">
+                            <a style={{ marginTop: '10px', paddingBottom: '10px' }} style={{ fontSize: '1.5rem', color: sec }} className="item">
                                 <i className="fas fa-home"></i>
                                 <h3 className={wordType} style={{ marginTop: '2px', marginBottom: '0px', color: 'black' }}> Home </h3>
                             </a>
@@ -79,8 +112,8 @@ class TeacherNavigation extends React.Component{
                             </a>
                         </Link>
                         <Link to={{ pathname: '/teacher-calendar', toggleState: this.state.toggler, colors4: ccssType }}>
-                            <a style={{ paddingBottom: '10px', fontSize: '1.5rem', color: sec  }} className="item">
-                                <i style={{ marginBottom: '0'}} className="far fa-calendar-alt"></i>
+                            <a style={{ paddingBottom: '10px', fontSize: '1.5rem', color: sec }} className="item">
+                                <i style={{ marginBottom: '0' }} className="far fa-calendar-alt"></i>
                                 <h3 className={wordType} style={{ marginTop: '2px', color: 'black', marginBottom: '0px' }}> Calendar </h3>
                             </a>
                         </Link>
@@ -98,8 +131,8 @@ class TeacherNavigation extends React.Component{
                     </div>
                 </div>
             </div>
-  );
-  }
+        );
+    }
 }
 
-export default TeacherNavigation;
+export default withRouter(TeacherNavigation);

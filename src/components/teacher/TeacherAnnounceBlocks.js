@@ -62,11 +62,21 @@ class TeacherAnnounceBlocks extends React.Component {
 
         for (i; i < this.state.lastWeekAnnouncements.length; i++) {
             
+            var tempDate = this.state.lastWeekAnnouncements[i].announcementDate;
+
+            tempDate = tempDate.substring(0,10);
+
+            var year = tempDate.substring(0,4);
+            var month = tempDate.substring(5,7);
+            var day = tempDate.substring(8,10);
+
+            var queryDate = `${month}/${day}/${year}`;
+
             theNotes.push(
                 <a style={{ marginBottom: '5px', backgroundColor: '#1089ff' }} href="#" class="item">
                     <a style={{ color: '#febf63' }} class="header">{this.state.lastWeekAnnouncements[i].courseCode}</a>
                     <div style={{ color: 'white' }} class="description">{this.state.lastWeekAnnouncements[i].announcementText}</div>
-                    <p style={{ color: '#febf63' }}><b> {this.state.lastWeekAnnouncements[i].announcementDate} </b> </p>
+                    <p style={{ color: '#febf63' }}><b> {queryDate} </b> </p>
                     <hr />
                 </a>
             );
