@@ -30,13 +30,15 @@ class Register extends Component {
                 role: '',
                 password: '',
                 confirmPassword: '',
-          }
-        };
+          },
+
+        }
+
     }
 
     handleChange = (event) => {
         event.preventDefault();
-        
+
         const { name, value } = event.target;
         let errors = this.state.errors;
 
@@ -45,38 +47,32 @@ class Register extends Component {
 
         switch (name) {
 
-            case 'firstName': 
-                errors.firstName = 
+            case 'firstName':
+                errors.firstName =
                 value.length === 0
                     ? 'First name cannot be empty'
                     : '';
                 break;
-            case 'lastName': 
-                errors.lastName = 
+            case 'lastName':
+                errors.lastName =
                   value.length === 0
                     ? 'Last name cannot be empty'
                     : '';
                 break;
-            case 'email': 
-                errors.email = 
+            case 'email':
+                errors.email =
                 validEmailRegex.test(value)
                     ? ''
                     : 'Email is not valid';
                 break;
-            case 'phone': 
-                errors.phone = 
+            case 'phone':
+                errors.phone =
                 (value.length === 10 && (validPhoneRegex.test(value)))
                     ? ''
                     : 'Invalid phone number';
                 break;
-            case 'role': 
-                errors.role = 
-                    value.length === 0 
-                    ? 'Role cannot be empty'
-                    : '';
-                break;
-            case 'password': 
-                errors.password = 
+            case 'password':
+                errors.password =
                 value.length < 8
                     ? 'Password must be atleast 8 characters long'
                     : '';
@@ -85,20 +81,20 @@ class Register extends Component {
                 } else{
                     errors.confirmPassword = 'Passwords do not match';
                 }
- 
+
                 break;
-            
-            case 'confirmPassword': 
-                errors.confirmPassword = 
+
+            case 'confirmPassword':
+                errors.confirmPassword =
                 value !== document.getElementById("password").value
                     ? 'Passwords do not match'
                     : '';
                 break;
-            
+
             default:
                 break;
         }
-      
+
         this.setState({errors, [name]: value});
 
     }
@@ -106,11 +102,13 @@ class Register extends Component {
     async registerUser(event){
 
         event.preventDefault();
-        
+
+
         this.state.user.firstName = this.state.firstName;
         this.state.user.lastName = this.state.lastName;
         this.state.user.email = this.state.email;
-        this.state.user.phoneNumber = this.state.phone;
+        this.state.user.phoneNumber = parseInt(this.state.phone, 10);
+
         if(this.state.role === 'admin'){
             this.state.user.role = 'a';
         } else if(this.state.role === 'teacher'){
@@ -123,9 +121,8 @@ class Register extends Component {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(this.state.password, salt);
 
-        this.state.user.password = hash;
-        
-
+        //this.state.user.password = hash;
+        this.state.user.password = this.state.password;
 
         try{
             const response = await fetch('/user/registration', {
@@ -135,8 +132,7 @@ class Register extends Component {
             })
             .then(res => res.text())
             .then(text => {
-                 
-                console.log("TEXT: ", text);
+
                 this.state.response = text;
                 if (text !== "SUCCESS!"){
                     alert("This email address already exists");
@@ -144,8 +140,9 @@ class Register extends Component {
                     alert("Please wait for the admin to verify your account!");
                     return this.props.history.push('/sign-in');
                 }
-                
             });
+
+            console.log(response.text());
 
         } catch (error){
             console.log(error);
@@ -167,9 +164,9 @@ class Register extends Component {
         this.setState({confirmPassword: document.getElementById("confirmPassword").value});
 
         console.log(this.state.errors);
-        
+
         let vars = ["firstName","lastName","email","phone","role","password","confirmPassword"];
-        
+
         var i;
         let errorCount = 0;
         for (i = 0; i < vars.length; i++) {
@@ -183,9 +180,9 @@ class Register extends Component {
         if (errorCount>0){
             return;
         } else{
-        
+
             this.registerUser(event);
-            
+
         }
     }
 
@@ -205,15 +202,18 @@ class Register extends Component {
                     <form onSubmit={this.handleSubmit} noValidate>
                     <img style={{width: '70px', height: '70px'}} src={Logo} alt="edLogo"/>
                     <h1 className="welcome" style={{marginTop: '1.5%', fontSize: '2.5rem', paddingBottom: '10px'}}> Register for EduForm! </h1>
-                            <div className="form-group">
-                                <input type="text" style={{fontSize: '.9rem'}} id="firstName" name="firstName" className="form-control" placeholder="First name" onChange={this.handleChange} noValidate/>
-                                {errors.firstName.length > 0 && <span className='error'>{errors.firstName}</span>}
-                            </div>
 
-                            <div className="form-group">
-                                <input type="text" style={{fontSize: '.9rem'}} id="lastName" name="lastName" className="form-control" placeholder="Last name" onChange={this.handleChange} noValidate/>
-                                {errors.lastName.length > 0 && <span className='error'>{errors.lastName}</span>}
-                            </div>
+                            <div style={{marginBottom: '13px'}}class="form-row">
+                                <div class="col">
+                                  <input type="text" style={{fontSize: '.9rem'}} id="firstName" name="firstName" className="form-control" placeholder="First name" onChange={this.handleChange} noValidate/>
+                                  {errors.firstName.length > 0 && <span className='error'>{errors.firstName}</span>}
+                                </div>
+                                <div class="col">
+                                  <input type="text" style={{fontSize: '.9rem'}} id="lastName" name="lastName" className="form-control" placeholder="Last name" onChange={this.handleChange} noValidate/>
+                                  {errors.lastName.length > 0 && <span className='error'>{errors.lastName}</span>}
+                                </div>
+                              </div>
+
 
                             <div className="form-group">
                                 <input type="email" style={{fontSize: '.9rem'}} id="email" name="email" className="form-control" placeholder="Email Address" onChange={this.handleChange} noValidate/>
@@ -239,16 +239,17 @@ class Register extends Component {
                                 </select>
                             </div>
 
+                            <div style={{marginBottom: '13px'}} class="form-row">
+                                <div class="col">
+                                  <input type="password" style={{fontSize: '.9rem'}} id="password" name="password" className="form-control" placeholder="Password" onChange={this.handleChange} noValidate/>
+                                  {errors.password.length > 0 && <span className='error'>{errors.password}</span>}
+                                </div>
+                                <div class="col">
+                                  <input type="password" style={{fontSize: '.9rem'}} id="confirmPassword" name="confirmPassword" className="form-control" placeholder="Confirm password" onChange={this.handleChange} noValidate/>
+                                  {errors.confirmPassword.length > 0 && <span className='error'>{errors.confirmPassword}</span>}
+                                </div>
+                              </div>
 
-                            <div className="form-group">
-                                <input type="password" style={{fontSize: '.9rem'}} id="password" name="password" className="form-control" placeholder="Password" onChange={this.handleChange} noValidate/>
-                                {errors.password.length > 0 && <span className='error'>{errors.password}</span>}
-                            </div>
-
-                            <div className="form-group">
-                                <input type="password" style={{fontSize: '.9rem'}} id="confirmPassword" name="confirmPassword" className="form-control" placeholder="Confirm password" onChange={this.handleChange} noValidate/>
-                                {errors.confirmPassword.length > 0 && <span className='error'>{errors.confirmPassword}</span>}
-                            </div>
 
                             <button type="submit" className="btn btn-block log" style={{fontSize: '1.2rem', backgroundColor: '#febf63'}}> <b> Register </b></button>
 

@@ -16,7 +16,7 @@ class CourseCard extends Component{
 
         return (
             <div className="course-card">
-                <Card width="100%"> 
+                <Card width="100%">
                     <CardBody>
                         <CardTitle>{courseCode}</CardTitle>
                         <CardTitle>{courseName}</CardTitle>

@@ -1,106 +1,159 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from "react-router-dom";
-import { useHistory } from "react-router";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 
-import UserProfile from '../.././utils/UserProfile';
+class StudentNavigation extends React.Component {
 
-
-const userProfile = {};
-
-
-class StudentNavigation extends Component {
 
     constructor(props) {
         super(props);
+
+        /*
+        var ccssType;
+        if (this.props.colorspass) {
+            ccssType = this.props.colorspass;
+        }
+        else {
+            ccssType = 'edu';
+        }
+        const batVals = ['#fddb3a', '#4c4c4c', 'white', 'batwords'];
+        const eduVals = ['#febf63', '#1089ff', 'white', 'teachWords'];
+        const iuVals = ['white', '#a20a0a', '#a20a0a', 'iuwords'];
+        const dinoVals = ['#cbbcb1', '#8db596', 'white', 'dinowords'];
+
+        var prim;
+        var sec;
+        var tri;
+        var wordType;
+
+        if (ccssType === 'dino') {
+            prim = dinoVals[0];
+            sec = dinoVals[1];
+            tri = dinoVals[2];
+            wordType = dinoVals[3];
+        }
+        else if (ccssType === "bat") {
+            prim = batVals[0];
+            sec = batVals[1];
+            tri = batVals[2];
+            wordType = batVals[3];
+        }
+        else if (ccssType === 'iu') {
+            prim = iuVals[0];
+            sec = iuVals[1];
+            tri = iuVals[2];
+            wordType = iuVals[3];
+        }
+        else {
+            prim = eduVals[0];
+            sec = eduVals[1];
+            tri = eduVals[2];
+            wordType = eduVals[3];
+        }
+        */
         this.state = {
-            
-            userProfile:{}
-            
-        };
+            toggler: this.props.thetog,
+            //pageTheme: ccssType,
+            //primary: prim,
+            //secondary: sec,
+            //tridary: tri,
+            //typeOfWords: wordType
 
-        this.LogUserOut = this.LogUserOut.bind(this);
-        this.CheckUserStatus = this.CheckUserStatus.bind(this);
-    }
-
-    LogUserOut() {
-
-        this.state.userProfile.email = '';
-
-        UserProfile.setEmail(this.state.userProfile);
-
-        console.log(UserProfile.getEmail());
-
-        return this.props.history.push('/sign-in');
-
-    }
-
-
-    CheckUserStatus() {
-
-        const UserEmail = UserProfile.getEmail();
-
-        if (UserEmail === "") {
-            return this.props.history.push('/sign-in');
         }
     }
-
-
-
     render() {
 
-        this.CheckUserStatus();
+        var ccssType;
+        if (this.props.colorspass) {
+            ccssType = this.props.colorspass;
+        }
+        else {
+            ccssType = 'edu';
+        }
+        const batVals = ['#fddb3a', '#4c4c4c', 'white', 'batwords'];
+        const eduVals = ['#febf63', '#1089ff', 'white', 'teachWords'];
+        const iuVals = ['white', '#a20a0a', '#a20a0a', 'iuwords'];
+        const dinoVals = ['#cbbcb1', '#8db596', 'white', 'dinowords'];
+
+        var prim;
+        var sec;
+        var tri;
+        var wordType;
+
+        if (ccssType === 'dino') {
+            prim = dinoVals[0];
+            sec = dinoVals[1];
+            tri = dinoVals[2];
+            wordType = dinoVals[3];
+        }
+        else if (ccssType === "bat") {
+            prim = batVals[0];
+            sec = batVals[1];
+            tri = batVals[2];
+            wordType = batVals[3];
+        }
+        else if (ccssType === 'iu') {
+            prim = iuVals[0];
+            sec = iuVals[1];
+            tri = iuVals[2];
+            wordType = iuVals[3];
+        }
+        else {
+            prim = eduVals[0];
+            sec = eduVals[1];
+            tri = eduVals[2];
+            wordType = eduVals[3];
+        }
+
+
 
         return (
-            <div style={{ marginTop: '6%' }} class="row">
+            <div style={{ marginTop: '6%' }} className="row">
                 <div className="col-1">
-                    <div style={{ width: '131px', backgroundColor: '#1089ff' }} className="ui visible sidebar inverted vertical menu">
+                    <div style={{ width: '131px', backgroundColor: prim }} className="ui visible sidebar inverted vertical menu">
                         <h1 className="welcome" style={{ paddingTop: '3%', fontSize: '2.1rem', color: 'black' }}> Eduform </h1>
                         <hr style={{ backgroundColor: '#febf63', marginBottom: '7%' }} />
-                        <div style={{ backgroundColor: 'white', paddingLeft: '15%', paddingRight: '15%' }}>
+                        <div style={{ backgroundColor: tri, paddingLeft: '15%', paddingRight: '15%' }}>
                             <img style={{ width: '65px', height: '65px', margin: 'auto', marginBottom: '3%', marginTop: '3%' }} className="rounded-circle" src={Personal} />
                         </div>
 
-                        <Link to='/student-home'>
-                            <a style={{ marginTop: '10px', paddingBottom: '10px' }} className="item">
-                                <i style={{ fontSize: '1.5rem', color: '#febf63' }} className="fas fa-home"></i>
-                                <h3 style={{ marginTop: '2px', marginBottom: '0px', color: 'black' }}> Home </h3>
+                        <Link to={{ pathname: '/student-home', toggleState: this.state.toggler, colors2: ccssType }}>
+                            <a style={{ marginTop: '10px', paddingBottom: '10px' }} style={{ fontSize: '1.5rem', color: sec }} className="item">
+                                <i className="fas fa-home"></i>
+                                <h3 className={wordType} style={{ marginTop: '2px', marginBottom: '0px', color: 'black' }}> Home </h3>
                             </a>
                         </Link>
-                        <Link to='/student-courses'>
-                            <a style={{ paddingBottom: '10px' }} className="item">
-                                <i style={{ fontSize: '1.5rem', color: '#febf63' }} className="fas fa-book"></i>
-                                <h3 style={{ marginTop: '2px', marginBottom: '0px', color: 'black' }}> Courses </h3>
+                        <Link to={{ pathname: '/student-courses', toggleState: this.state.toggler, colors1: ccssType }}>
+                            <a style={{ paddingBottom: '10px' }} style={{ fontSize: '1.5rem', color: sec }}className="item">
+                                <i className="fas fa-book"></i>
+                                <h3 className={wordType} style={{ marginTop: '2px', marginBottom: '0px', color: 'black' }}> Courses </h3>
                             </a>
                         </Link>
-                        <Link to='/student-chat'>
-                            <a style={{ paddingBottom: '10px' }} className="item">
-                                <i style={{ fontSize: '1.5rem', color: '#febf63' }} className="far fa-comment"></i>
-                                <h3 style={{ marginTop: '2px', color: 'black', marginBottom: '0px' }}> Chat </h3>
+                        <Link to={{ pathname: '/student-calendar', toggleState: this.state.toggler, colors4: ccssType }}>
+                            <a style={{ paddingBottom: '10px', fontSize: '1.5rem', color: sec  }} className="item">
+                                <i style={{ marginBottom: '0'}} className="far fa-calendar-alt"></i>
+                                <h3 className={wordType} style={{ marginTop: '2px', color: 'black', marginBottom: '0px' }}> Calendar </h3>
                             </a>
                         </Link>
-                        <Link to='/student-calendar'>
-                            <a style={{ paddingBottom: '10px' }} className="item">
-                                <i style={{ marginBottom: '0', fontSize: '1.5rem', color: '#febf63' }} className="far fa-calendar-alt"></i>
-                                <h3 style={{ marginTop: '2px', color: 'black', marginBottom: '0px' }}> Calendar </h3>
-                            </a>
-                        </Link>
-                        <Link to='/student-settings'>
-                            <a style={{ paddingBottom: '10px' }} style={{ fontSize: '1.5rem', color: '#febf63' }} className="item">
+                        <Link to={{ pathname: '/student-settings', toggleState: this.state.toggler, colors5: ccssType }}>
+                            <a style={{ paddingBottom: '10px' }} style={{ fontSize: '1.5rem', color: sec }} className="item">
                                 <i class="fas fa-cogs"></i>
-                                <h3 style={{ marginTop: '2px', color: 'black', marginBottom: '0px' }}> Settings </h3>
+                                <h3 className={wordType} style={{ marginTop: '2px', color: 'black', marginBottom: '0px' }}> Settings </h3>
                             </a>
                         </Link>
-                        <div onClick={this.LogUserOut}>
+                        <Link to='/sign-in'>
                             <a style={{ position: 'absolute', bottom: '0' }} className="item">
-                                <h3 style={{ marginTop: '2px', color: 'black' }}> Log Out </h3>
+                                <h3 className={wordType} style={{ marginTop: '2px', color: 'black' }}> Log Out </h3>
                             </a>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
-        );
+        )
     }
-};
+}
 
-export default withRouter(StudentNavigation);
+export default StudentNavigation;

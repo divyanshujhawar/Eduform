@@ -6,80 +6,79 @@ import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
 
-import UserProfile from '../.././utils/UserProfile';
-
 class UpcomingAnnouncementsBlocks extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-
-            lastWeekAnnouncements: [],
-
-            announcements: [
-                {
-                    ano_id: 56,
-                    ano_text: 'Assignment 5 has been graded.',
-                    ano_date: '11/01/2020',
-                    course_code: 'CS1111',
-                    course_idl: 6,
-                },
-                {
-                    ano_id: 57,
-                    ano_text: 'Office Hours have been changed this week to: 5-7pm on Thursday.',
-                    ano_date: '10/30/2020',
-                    course_code: 'CS1113',
-                    course_idl: 4,
-                },
-                {
-                    ano_id: 58,
-                    ano_text: 'Lab 7 will be released this evening.',
-                    ano_date: '10/25/2020',
-                    course_code: 'CS1009',
-                    course_idl: 23,
-                },
-                {
-                    ano_id: 59,
-                    ano_text: 'Assignment 3 has been graded.',
-                    ano_date: '10/27/2020',
-                    course_code: 'CS1006',
-                    course_idl: 11,
-                },
-                {
-                    ano_id: 60,
-                    ano_text: 'Project has been released.',
-                    ano_date: '10/28/2020',
-                    course_code: 'CS1006',
-                    course_idl: 11,
-                },
-                {
-                    ano_id: 61,
-                    ano_text: 'Exam 1 grades have been graded.',
-                    ano_date: '10/31/2020',
-                    course_code: 'CS1111',
-                    course_idl: 6,
-                },
-                {
-                    ano_id: 62,
-                    ano_text: 'Practice Exam for the Midterm has been opened.',
-                    ano_date: '10/18/2020',
-                    course_code: 'CS2145',
-                    course_idl: 12,
-                },
-                {
-                    ano_id: 63,
-                    ano_text: 'Practice Exam for the Midterm has been closed.',
-                    ano_date: '10/20/2020',
-                    course_code: 'CS1112',
-                    course_idl: 2,
-                },
-            ]
+        var cssType = 'edu';
+        if (this.props.styler) {
+            cssType = this.props.styler;
+        }
+        else {
+            cssType = 'edu';
         }
 
-        this.getLastWeekAnnouncements = this.getLastWeekAnnouncements.bind(this);
-    }
+        const batVals = ["batbackground", "batwords", "batheader", "Batform", "#fddb3a", "batwords2"];
+        const eduVals = ["backgroundGenericCourse", 'teachWords', 'eduheader', "Eduform", '#febf63', "eduheader2"];
+        const iuVals = ['iubackground', 'iuwords', 'iuheader', "IUform", "white", "iuwords2"];
+        const dinoVals = ['dinobackground', 'dinowords', 'dinoheader', 'Dinoform', "black", "dinowords2"];
 
+        var whichCssbackground;
+        var whichCsswords;
+        var whichCssothers;
+        var wordDisplay;
+        var headerback;
+        var headerwordcolor;
+
+        if (cssType === 'dino') {
+            whichCssbackground = dinoVals[0];
+            whichCsswords = dinoVals[1];
+            whichCssothers = dinoVals[2];
+            wordDisplay = dinoVals[3];
+            headerback = dinoVals[4];
+            headerwordcolor = dinoVals[5];
+        }
+        else if (cssType === 'bat') {
+            whichCssbackground = batVals[0];
+            whichCsswords = batVals[1];
+            whichCssothers = batVals[2];
+            wordDisplay = batVals[3];
+            headerback = batVals[4];
+            headerwordcolor = batVals[5];
+        }
+        else if (cssType === 'iu') {
+            whichCssbackground = iuVals[0];
+            whichCsswords = iuVals[1];
+            whichCssothers = iuVals[2];
+            wordDisplay = iuVals[3];
+            headerback = iuVals[4];
+            headerwordcolor = iuVals[5];
+        }
+        else {
+            whichCssbackground = eduVals[0];
+            whichCsswords = eduVals[1];
+            whichCssothers = eduVals[2];
+            wordDisplay = eduVals[3];
+            headerback = eduVals[4];
+            headerwordcolor = eduVals[5];
+        }
+
+
+        this.state = {
+
+            lastWeekAnnouncements: [{"announcementDate" : "11/29/2020", "courseCode": "P465", "announcementText" : "Hello how are you?"},
+            {"announcementDate" : "11/29/2020", "courseCode": "P465", "announcementText" : "Hello how are you?"}
+            ,{"announcementDate" : "11/29/2020", "courseCode": "P465", "announcementText" : "Hello how are you?"}],
+
+            theBackground: whichCssbackground,
+            theWords: whichCsswords,
+            others: whichCssothers,
+            headerWord: wordDisplay,
+            selectheaderback: headerback,
+            colorOfHeadWord: headerwordcolor
+        }
+    }
 
     componentDidMount(){
         this.getLastWeekAnnouncements();
@@ -87,7 +86,7 @@ class UpcomingAnnouncementsBlocks extends React.Component {
 
     getLastWeekAnnouncements(){
         try {
-            const response = fetch('/student/getLastWeekAnnouncements/' + UserProfile.getEmail(), {
+            const response = fetch('/student/getLastWeekAnnouncements/' + 'student@iu.edu', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             })
@@ -99,7 +98,6 @@ class UpcomingAnnouncementsBlocks extends React.Component {
                         lastWeekAnnouncements: jsonData.result
                     });
 
-                    console.log("Assignments: ", this.state.lastWeekAnnouncements);
 
                 });
 
@@ -107,8 +105,6 @@ class UpcomingAnnouncementsBlocks extends React.Component {
             alert(error);
         }
     }
-
-
 
 
     render() {
@@ -125,17 +121,17 @@ class UpcomingAnnouncementsBlocks extends React.Component {
         const announceItems = [];
 
         let i = 0;
-        for (i; i < this.state.announcements.length; i++) {
-            var passedDay = Date.parse(this.state.announcements[i].ano_date);
+        for (i; i < this.state.lastWeekAnnouncements.length; i++) {
+            var passedDay = Date.parse(this.state.lastWeekAnnouncements[i].announcementDate);
             if ((Math.abs(time - passedDay) / milliTime) <= 14) {  // This checks to make sure time is within 2 week span for announcements
                 announceItems.push(
-                    <div style={{ marginBottom: '5px' }} class="item">
+                    <div style={{marginBottom: '2px' }} class="item">
                         <div class="content">
-                            <a class="header">{this.state.announcements[i].course_code}</a>
-                            <div class="description">{this.state.announcements[i].ano_text}</div>
-                            <p> <b> {this.state.announcements[i].ano_date} </b> </p>
+                            <a style={{ marginBottom: '7px' }} className="header"> <b className={`${this.state.theWords}`} style={{ fontSize: '1.1rem' }}> {this.state.lastWeekAnnouncements[i].courseCode} </b> </a>
+                            <div style={{ color: 'white' }} className="description">{this.state.lastWeekAnnouncements[i].announcementText}</div>
+                            <p className={`${this.state.theWords}`}> <b> {this.state.lastWeekAnnouncements[i].announcementDate} </b> </p>
                         </div>
-                        <hr />
+                        <hr style={{borderTop: 'none',height: '.2px',backgroundColor: 'black'}} />
                     </div>
                 );
             }

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Semantic from 'semantic-ui-css/semantic.min.css';
@@ -7,70 +7,154 @@ import Calendar from '../student/Calendar.js';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
 
-const StudentCalendar = () => {
-  return(
-    <div className="backGroundSAT">
-      <div className="container">
-        <div style={{marginTop:'10px'}} className="row">
-            <div className="col-md-1 col-sm-2"></div>
-            <div style={{textAlign: 'left'}} className="col-md-11 col-sm-8">
-              <img style={{width: '70px', height: '70px', marginTop: '1.5%'}} src={Logo} alt="edLogo"/>
-              <h1 className="studentWords" style={{fontSize: '2.4rem'}}> Calendar</h1>
-              <hr style={{marginBottom: '30px'}}/>
-              <Calendar />
-            </div>
-        </div>
-        <hr/>
-          <div style={{marginTop: '6%'}} class="row">
-            <div className="col-1">
-              <div style={{width: '131px',backgroundColor: '#1089ff'}} className="ui visible sidebar inverted vertical menu">
-                <h1 className="welcome" style={{paddingTop: '3%', fontSize: '2.1rem', color: 'black'}}> Eduform </h1>
-                <hr style={{backgroundColor: '#1089ff', marginBottom: '7%'}} />
-                <div style={{backgroundColor: 'white',paddingLeft: '15%', paddingRight: '15%'}}>
-                  <img style={{width: '65px', height: '65px', margin: 'auto', marginBottom: '3%', marginTop: '3%'}} className="rounded-circle" src={Personal} />
-                </div>
+import Wheel from '../student/OptionWheel';
+import Bar from './StudentNavigation.js';
 
-                <Link to='./student-home'>
-                  <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-home"></i>
-                    <h3 style={{marginTop: '2px', marginBottom: '0px', color: 'black'}}> Home </h3>
-                  </a>
-                </Link>
-                <Link to='./student-courses'>
-                  <a style={{paddingBottom: '10px'}} className="item">
-                  <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-book"></i>
-                  <h3 style={{marginTop: '2px',marginBottom: '0px',color: 'black'}}> Courses </h3>
-                  </a>
-                </Link>
-                <Link to='./student-chat'>
-                  <a style={{paddingBottom: '10px'}} className="item">
-                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="far fa-comment"></i>
-                   <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> Chat </h3>
-                  </a>
-                </Link>
-                <Link to='./student-calendar'>
-                  <a style={{paddingBottom: '10px'}} className="item">
-                    <i style={{marginBottom: '0',fontSize: '1.5rem', color:'#febf63'}} className="far fa-calendar-alt"></i>
-                    <h3 style={{marginTop: '2px',color: 'black', marginBottom: '0px'}}> Calendar </h3>
-                  </a>
-                </Link>
-                <Link to='./student-settings'>
-                  <a style={{paddingBottom: '10px'}} style={{fontSize: '1.5rem', color:'#febf63'}} className="item">
-                    <i class="fas fa-cogs"></i>
-                     <h3 style={{marginTop: '2px',color: 'black', marginBottom: '0px'}}> Settings </h3>
-                  </a>
-                </Link>
-                <Link to='./sign-in'>
-                  <a style={{position: 'absolute', bottom: '0'}} className="item">
-                  <h3 style={{marginTop: '2px',color: 'black'}}> Log Out </h3>
-                  </a>
-                </Link>
-              </div>
+class StudentCalendar extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        var cssType;
+        if (this.props.location.colors4) {
+            cssType = this.props.location.colors4;
+        }
+        else {
+            cssType = 'edu';
+        }
+        var presetForNav = false;
+        var defVal = 30;
+        if (this.props.toggleState) {
+            presetForNav = this.props.toggleState;
+            if (presetForNav === true) {
+                defVal = 175;
+            }
+            else {
+                defVal = 30;
+            }
+        }
+        else {
+            presetForNav = true;
+            defVal = 175;
+        }
+
+        const batVals = ["batbackground", "batwords", "batheader", "Batform", "#fddb3a", "black"];
+        const eduVals = ["backgroundGenericCourse", 'teachWords', 'eduheader', "Eduform", '#febf63', "black"];
+        const iuVals = ['iubackground', 'iuwords', 'iuheader', "IUform", "white", "#a20a0a"];
+        const dinoVals = ['dinobackground', 'dinowords', 'dinoheader', 'Dinoform', "black", "#8db596"];
+
+        var whichCssbackground;
+        var whichCsswords;
+        var whichCssothers;
+        var wordDisplay;
+        var headerback;
+        var headerwordcolor;
+
+        if (cssType === 'dino') {
+            whichCssbackground = dinoVals[0];
+            whichCsswords = dinoVals[1];
+            whichCssothers = dinoVals[2];
+            wordDisplay = dinoVals[3];
+            headerback = dinoVals[4];
+            headerwordcolor = dinoVals[5];
+        }
+        else if (cssType === 'bat') {
+            whichCssbackground = batVals[0];
+            whichCsswords = batVals[1];
+            whichCssothers = batVals[2];
+            wordDisplay = batVals[3];
+            headerback = batVals[4];
+            headerwordcolor = batVals[5];
+        }
+        else if (cssType === 'iu') {
+            whichCssbackground = iuVals[0];
+            whichCsswords = iuVals[1];
+            whichCssothers = iuVals[2];
+            wordDisplay = iuVals[3];
+            headerback = iuVals[4];
+            headerwordcolor = iuVals[5];
+        }
+        else {
+            whichCssbackground = eduVals[0];
+            whichCsswords = eduVals[1];
+            whichCssothers = eduVals[2];
+            wordDisplay = eduVals[3];
+            headerback = eduVals[4];
+            headerwordcolor = eduVals[5];
+        }
+
+
+        this.state = {
+
+            pageTheme: cssType,
+            displayNav: presetForNav,
+
+            itemPad: defVal,
+            theBackground: whichCssbackground,
+            theWords: whichCsswords,
+            others: whichCssothers,
+            headerWord: wordDisplay,
+            selectheaderback: headerback,
+            colorOfHeadWord: headerwordcolor
+        }
+
+        this.bar = this.bar.bind(this);
+        this.displayer = this.displayer.bind(this);
+
+
+    }
+    displayer() {
+
+        if (this.state.displayNav === true) {
+
+            return (<Bar thetog={this.state.displayNav} colorspass={this.state.pageTheme} />);
+        }
+        else {
+            return <p></p>;
+        }
+    }
+
+    bar() {
+        this.setState({ displayNav: !this.state.displayNav });
+        if (this.state.itemPad === 30) {
+            this.setState({ itemPad: 175 });
+        }
+        else {
+            this.setState({ itemPad: 30 });
+        }
+
+    }
+
+    render() {
+        return (
+            <div className={`${this.state.theBackground}`}>
+                <div style={{ paddingLeft: `${this.state.itemPad}px`, paddingRight: '2%' }} className="flex-container">
+                    <div style={{ margin: 'auto', width: '267px', height: '50px', backgroundColor: `${this.state.selectheaderback}` }} className="row dashItems">
+
+                        <h1 className={`${this.state.others}`} style={{ color: `${this.state.colorOfHeadWord}`, margin: 'auto', fontSize: '2.6rem' }}><Link onClick={this.bar}> <i style={{ color: `${this.state.colorOfHeadWord}`, marginRight: '0px' }} className={this.state.displayNav ? "toggle on icon" : "toggle off icon"}></i> </Link>
+                            {this.state.headerWord}</h1>
+
+                    </div>
+                    <div style={{ marginTop: '10px' }} className="flex-row">
+
+
+
+                        <div style={{ textAlign: 'left' }} className="col-md-12 col-sm-12">
+                            <img style={{ width: '70px', height: '70px', marginTop: '1.5%' }} src={Logo} alt="edLogo" />
+                            <h1 className={`${this.state.theWords}`} style={{ fontSize: '2.8rem' }}> Calendar</h1>
+                            <hr style={{ marginBottom: '30px' }} />
+                            <Calendar styler={this.state.pageTheme} />
+                        </div>
+                    </div>
+                    <hr />
+
+                    {this.displayer()}
+
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-  );
-};
+
+        );
+    }
+}
 
 export default StudentCalendar;

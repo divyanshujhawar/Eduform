@@ -3,13 +3,53 @@
 @import url('https://fonts.googleapis.com/css2?family=David+Libre:wght@500&family=Noto+Serif+TC:wght@300&family=Orbitron:wght@700&family=PT+Serif:ital@1&family=Sansita+Swashed&family=Sedgwick+Ave&family=Source+Serif+Pro:ital,wght@1,600&display=swap');
 
 .studentWords{
+  font-family: 'Noto Serif TC', serif;
+  color: #febf63;
+}
+.eduheader{
+  font-family: 'Noto Serif TC', serif;
+  color: black;
+  
+}
+.teachWords4{
+  font-family: 'Noto Serif TC', serif;
+  color: white;
+}
+.edufont{
+  font-family: 'Noto Serif TC', serif;
+}
+.eduheader2{
+  font-family: 'Noto Serif TC', serif;
+  color: white;
+}
+.headerBackground{
+  background-color: #febf63;
   font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue", sans-serif;
-  color: #1089ff;
+}
+.eduheader3{
+  background-color: #febf63;
+}
+
+.teachWords{
+  font-family: 'Noto Serif TC', serif;
+  color: #febf63;
+}
+.teachWords2{
+  font-family: 'Noto Serif TC', serif;
+  color: white;
+}
+.announce{
+  font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue", sans-serif;
 }
 .thePill{
   color: white;
 }
+.dashItems{
+  border-bottom-left-radius: 110px;
+  border-bottom-right-radius: 110px;
 
+
+}
 .backGroundSAT{
   width: 100%;
   height: cover;
@@ -18,18 +58,89 @@
   position: absolute;
   background-size: cover;
 }
+.backGroundTeach{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backGroundTeachC{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backgroundGenericCourse{
+  width: 100%;
+  height: 450%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backGroundTeachCal{
+  width: 100%;
+  height: 320%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backGroundTeachCC{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
 .navbar-brand{
   font-family: 'Orbitron';
 }
-.navbar {
-  background-color: #1089ff;
-}
+
 .auth-wrapper{
   padding: 100px 2% 6% 2%;
 }
+.button2{
+
+  border: solid;
+
+  border-width: 2px;
+  font-size: 1rem;
+
+  padding-bottom: 30px;
+  padding-top: 0;
+  text-decoration: none;
+  width: 115px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+  height: 12px;
+}
 .App2 {
   width: 100%;
-  height: 100%;
+  height: 770px;
+  background-image: url(assets/wall4.jpg);
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+  padding-top: 50px;
+}
+.backGroundSet{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.App23 {
+  width: 100%;
+  height: 670px;
   background-image: url(assets/wall4.jpg);
   background-repeat: repeat;
   position: absolute;
@@ -71,6 +182,9 @@
   margin-bottom: 8%;
   font-family: 'Source Serif Pro';
   color:black;
+}
+.eduheader{
+  color: white;
 }
 .mySignInWord {
   font-size: 2rem;
@@ -249,5 +363,32 @@ thead{
 
 .stock-container{
     margin-top: 100px;
-    margin-left: 220px;
+    margin-left: 300px;
+}
+
+.adminBackground{
+  background-color: #febf63;
+  height: 700px;
+  background-size: cover;
+}
+
+.adminWordHead{
+  font-family: 'Noto Serif TC', serif;
+}
+
+.homePage{
+  background-color: #febf63;
+}
+.homePic{
+  height: 600px;
+  background-image: url(assets/learn.jpg);
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.adminWordHead2{
+  font-family: 'Noto Serif TC', serif;
+  color: #1089ff;
 }

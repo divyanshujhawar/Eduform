@@ -11,17 +11,26 @@ import UserProfile from '../.././utils/UserProfile';
 
 
 class AdminHome extends Component{
-  
 
-  
+
+
   render(){
 
     {console.log(UserProfile.getEmail())}
 
 
     return(
-      <div className="backGroundSAT">
-        <AdminNavBar/>
+      
+        <div className="adminBackground">
+          <div className="flex-container">
+          <AdminNavBar/>
+            <div>
+              <p> Welcome to the dashboard</p>
+              <br></br>
+              <p>{UserProfile.getName()}
+              </p>
+            </div>
+        </div>
       </div>
     );
   }

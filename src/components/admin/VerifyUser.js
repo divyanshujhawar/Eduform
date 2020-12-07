@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row, Column } from 'react-foundation';
 import AdminNavBar from './AdminNavBar.js';
 import UserCard from './UserCard.js';
+import Logo from '../.././assets/edLogo.png';
 
 
 class VerifyUser extends Component {
@@ -9,7 +10,10 @@ class VerifyUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            unverifiedUsers: []
+            unverifiedUsers: [{"firstName" : "Bryant", "lastName": "Hunsberger", "email" : "bjhunsbe@iu.edu", "r": "a"},
+        {"firstName" : "Bryant", "lastName": "Hunsberger", "email" : "bjhunsbe@iu.edu", "r": "a"},
+        {"firstName" : "Bryant", "lastName": "Hunsberger", "email" : "bjhunsbe@iu.edu", "r": "a"},
+        {"firstName" : "Bryant", "lastName": "Hunsberger", "email" : "bjhunsbe@iu.edu", "r": "a"},]
         }
 
         this.getUnverifiedUsers = this.getUnverifiedUsers.bind(this);
@@ -76,28 +80,37 @@ class VerifyUser extends Component {
 
         let userCards = this.state.unverifiedUsers.map(user => {
             return (
-                <div className="userCardColumn">
-                    <Column sm="4">
+                <div style={{marginBottom: '5px'}} className="flex-row">
+                 
                         <UserCard key={personalbar.id} verify={this.verify.bind(this)} user={user} />
-                    </Column>
+                 
                 </div>
             )
         })
         return (
-            <div className="backGroundSAT">
-                <div >
-                    <AdminNavBar />
-                </div>
+            <div className="adminBackground">
+                    <div style={{paddingRight: '5%',paddingLeft: '200px'}} className="flex-container">
+                        <div style={{marginBottom: '20px',paddingTop: '20px'}} className="row">
+                            <div style={{textAlign: 'left' }} className="flex-col-md-8 flex-col-sm-12">
+                                <img style={{backgroundColor: '#1089ff',width: '70px', height: '70px', marginTop: '2.5%' }} src={Logo} alt="edLogo" />
+                                <h1 className="adminWordHead" style={{fontSize: '2.6rem' }}> Verify Users</h1>
+                                <hr style={{backgroundColor: 'black',marginBottom: '20px' }} />
+                           
+                            </div>
+                        </div>
 
-                <div className="userCardComponent" style={{marginTop: '3%'}}>
-                    <Row>
                         {userCards}
-                    </Row>
+                        <div>
+                            <AdminNavBar />
+                        </div>
 
+                        
+              
+               
                 </div>
             </div>
         );
     }
-};
+}
 
 export default VerifyUser;

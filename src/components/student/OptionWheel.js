@@ -6,66 +6,92 @@ import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
 import AssignmentGen from '../courses/GenericAssignments.js';
+import update from 'react-addons-update';
 
 class OptionWheel extends React.Component {
 
-    constructor(props){
-      super(props);
+    constructor(props) {
+        super(props);
 
-      var courseOne = this.props.currentClass;
+        var courseOne = this.props.currentClass;
 
-      this.state = {
-        currentCourse : courseOne
-      }
+        this.state = {
+            currentCourse: this.props.currentClass,
+            toggler: this.props.thetog,
+            currentCourse: this.props.currentClass,
+            buttonStates: ['none', 'none', 'none', 'none']
+        }
+
+        this.state.ButtonSize = this.ButtonSize.bind(this);
+        this.state.ButtonLeave = this.ButtonLeave.bind(this);
     }
 
-    render(){
-      return(
+    ButtonSize = (event) => {
+        if(this.state.buttonStates[event] === 'none')
+        {
+            this.setState(update(this.state,{buttonStates: {[event] : {$set: 'scale(3)'}}}));
+        }
+        else{
+            this.setState(update(this.state,{buttonStates: {[event] : {$set: 'none'}}}));
+        }
+    }
 
-        <div style={{width: '300px'}} class="ui vertical menu">
-          <div class="item">
-            <div class="ui transparent icon input">
-              <input type="text" placeholder="Search Course Material"/>
-              <i class="search icon"></i>
-            </div>
-          </div>
-          <Link to={{pathname:'/course102012930',bstate : {
-            currentClass1 : this.state.currentCourse
-          }}}> <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
-            <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Home</b></p>
-              </a>
-          </Link>
-          <Link to={{pathname:'/coursegrades827398',astate : {
-            currentClass2 : this.state.currentCourse
-          }}}> <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
-              <p className="studentWords"style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Grades</b></p>
-              </a>
-          </Link>
-          <Link to={{pathname:'/courseAssignments093028',assignstate : {
-            theCourse : this.state.currentCourse
-          }}}> <a style={{backgroundColor: '#febf63', width: '300px', height: '50px'}} class="item">
-              <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Assignments </b></p>
-              </a>
-          </Link>
-          <Link to={{pathname:'/coursechat28738',cstate : {
-            currentClass3 : this.state.currentCourse
-          }}}> <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
-             <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Chat</b></p>
-             </a>
-          </Link>
+    ButtonLeave = (event) => {
+        
+        this.setState(update(this.state,{buttonStates: {[event] : {$set: 'none'}}}));
+        
+    }
 
-          <Link to={{pathname:'/coursesettings930293',dstate : {
-           currentClass4 : this.state.currentCourse
-           }}}>
-            <a style={{backgroundColor: '#febf63',width: '300px', height: '50px'}} class="item">
-              <p className="studentWords" style={{color: '#1089ff',fontSize: '1.4rem'}}><b>Settings</b></p>
+    render() {
+
+        return (
+
+            <div style={{ width: '100%' }} class="ui vertical menu">
+                <div class="item">
+                    <div class="ui transparent icon input">
+                        <input type="text" placeholder="Search Course Material" />
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <Link to={{
+                    pathname: '/course/' + this.state.currentCourse + '/assignments', assignstate: {
+                        theCourse: this.state.currentCourse
+                    }, toggleState: this.state.toggler
+                }}> <a onMouseOver={() => this.ButtonSize(3)}  style={{transform: `${this.state.buttonStates[2]}`,borderBottom: 'solid', borderColor: 'white', backgroundColor: '#febf63', width: '100%', height: '50px' }} class="item">
+                        <p className="studentWords" style={{color: 'black', fontSize: '1.2rem' }}><b>Assignments </b></p>
+                    </a>
+                </Link>
+                <Link to={{
+                    pathname: '/course/' + this.state.currentCourse + '/grades', gradestate: {
+                        currentClassGrade: this.state.currentCourse
+                    }, toggleState: this.state.toggler
+                }}> <a onMouseOver={(e) => this.ButtonSize(3)} style={{transform: `${this.state.buttonStates[2]}`,borderBottom: 'solid', borderColor: 'white', backgroundColor: '#febf63', width: '100%', height: '50px' }} class="item">
+                        <p className="studentWords" style={{color: 'black', fontSize: '1.2rem' }}><b>Grades</b></p>
+                    </a>
+                </Link>
+                <Link to={{
+                    pathname: '/course/' + this.state.currentCourse + '/chat', gradestate: {
+                        currentClassGrade: this.state.currentCourse
+                    }, toggleState: this.state.toggler
+                }}><a style={{transform: `${this.state.buttonStates[2]}`,borderBottom: 'solid', borderColor: 'white', backgroundColor: '#febf63', width: '100%', height: '50px' }} class="item">
+                    <p className="studentWords" style={{color: 'black', fontSize: '1.2rem' }}><b>Chat</b></p>
                 </a>
-          </Link>
+                </Link>
 
-      </div>
+                <Link to={{
+                    pathname: '/course/' + this.state.currentCourse + '/announcements', notestate: {
+                        currentClassNotes: this.state.currentCourse
+                    }, toggleState: this.state.toggler
+                }}>
+                    <a onMouseOver={() => this.ButtonSize(3)} onMouseLeave={() => this.ButtonLeave(3)} id='announceButton' style={{transform: `${this.state.buttonStates[2]}`,backgroundColor: '#febf63', width: '100%', height: '50px' }} class="item">
+                        <p className="studentWords" style={{ color: 'black', fontSize: '1.2rem' }}><b>Announcements</b></p>
+                    </a>
+                </Link>
+
+            </div>
 
 
-      );
+        );
     }
 }
 

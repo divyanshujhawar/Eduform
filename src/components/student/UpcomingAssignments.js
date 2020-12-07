@@ -5,7 +5,7 @@ import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.
 import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
-import Mini from '../student/UpcomingAssignmentInfoBlocks.js';
+import Mini from './UpcomingAssignmentInfoBlocks.js';
 
 class UpcomingAssignments extends React.Component {
 
@@ -93,7 +93,7 @@ class UpcomingAssignments extends React.Component {
             dayInc++;
           }
         break;
-      case(5):
+      case(6):
           var dayInc = 6;
           var i;
           for(i = 0; i < 14; i++){
@@ -103,6 +103,7 @@ class UpcomingAssignments extends React.Component {
             daysOfWeekKeys[i].day = listOfDay[dayInc];
             dayInc++;
           }
+
         break;
     }
 
@@ -652,7 +653,7 @@ class UpcomingAssignments extends React.Component {
             {
               mDay = '0' + mDay;
             }
-            daysToCompareKeys[j].day =  mMonth + "/" + mDay + "/" + year;
+            daysToCompareKeys[0].day =  mMonth + "/" + mDay + "/" + year;
 
             day = 1;
             if((month + 2) > 12){
@@ -1162,15 +1163,58 @@ class UpcomingAssignments extends React.Component {
           }
           break;
         }
+        var cssType = 'edu';
+        if(this.props.styler){
+          cssType = this.props.styler;
+        }
+        else{
+          cssType = 'edu';
+        }
+
+        const batVals = ['batbackground', 'batwords2', 'batotherwords'];
+        const eduVals = ['backgroundGenericCourse', 'teachWords', 'eduotherwords'];
+        const iuVals = ['iubackground', 'iuwords2', 'iuotherwords'];
+        const dinoVals = ['dinobackground', 'dinowords', 'dinootherwords'];
+
+        var whichCssbackground;
+        var whichCsswords;
+        var whichCssothers;
+
+        if(cssType === 'dino')
+        {
+          whichCssbackground = dinoVals[0];
+          whichCsswords = dinoVals[1];
+          whichCssothers = dinoVals[2];
+        }
+        else if(cssType === 'bat')
+        {
+          whichCssbackground = batVals[0];
+          whichCsswords = batVals[1];
+          whichCssothers = batVals[2];
+        }
+        else if(cssType === 'iu'){
+          whichCssbackground = iuVals[0];
+          whichCsswords = iuVals[1];
+          whichCssothers = iuVals[2];
+        }
+        else{
+          whichCssbackground = eduVals[0];
+          whichCsswords = eduVals[1];
+          whichCssothers = eduVals[2];
+        }
     }
 
 
 
-    this.state ={
+    this.state = {
 
       daysOfWeek : daysOfWeekKeys,
       dateToCompare : daysToCompareKeys,
-      date : dateKeys
+      date : dateKeys,
+      pageTheme : cssType,
+      theBackground : whichCssbackground,
+      theWords : whichCsswords,
+      others : whichCsswords
     }
 
    }
@@ -1183,8 +1227,8 @@ class UpcomingAssignments extends React.Component {
     {
       days.push(
         <div style={{marginTop: '15px'}} className="myDays">
-          <h3 style={{color:'#febf63'}}> {this.state.daysOfWeek[i].day} - {this.state.date[i].day} </h3>
-           <Mini datePass={this.state.dateToCompare[i].day} />
+          <h3 className="teachWords" style={{fontSize: '1.8rem'}}> {this.state.daysOfWeek[i].day} - {this.state.date[i].day} </h3>
+           <Mini datePass={this.state.dateToCompare[i].day} passStyler={this.state.pageTheme} />
         </div>
       );
     }

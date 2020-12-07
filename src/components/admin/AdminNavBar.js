@@ -10,9 +10,9 @@ class AdminNavBar extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            
+
             userProfile:{}
-            
+
         };
 
         this.logUserOut = this.logUserOut.bind(this);
@@ -40,7 +40,7 @@ class AdminNavBar extends Component{
 
     render() {
 
-        this.checkUserStatus();
+        {/*this.checkUserStatus();*/}
 
         return (
             <div className="container">
@@ -48,20 +48,15 @@ class AdminNavBar extends Component{
 
             <div className="row">
             <div className="col-1">
-                <div style={{width: '131px',backgroundColor: '#1089ff'}} className="ui visible sidebar inverted vertical menu">
+                <div style={{width: '135px',backgroundColor: '#1089ff'}} className="ui visible sidebar inverted vertical menu">
                 <h1 className="welcome" style={{paddingTop: '3%', fontSize: '2.1rem', color: 'black'}}> Eduform </h1>
                 <hr style={{backgroundColor: '#1089ff', marginBottom: '7%'}} />
                 <div style={{backgroundColor: 'white',paddingLeft: '15%', paddingRight: '15%'}}>
                     <img style={{width: '65px', height: '65px', margin: 'auto', marginBottom: '3%', marginTop: '3%'}} className="rounded-circle" src={Personal} />
                 </div>
-                <Link to='./admin-home'>
-                    <a style={{marginTop: '10px', paddingBottom: '10px'}} className="item">
-                    <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-home"></i>
-                    <h3 style={{marginTop: '2px', marginBottom: '0px', color: 'black'}}> Home </h3>
-                    </a>
-                </Link>
+
                 <Link to='./admin-verify-user'>
-                    <a style={{paddingBottom: '10px'}} className="item">
+                    <a style={{marginTop: '15px',paddingBottom: '10px'}} className="item">
                     <i style={{fontSize: '1.5rem', color:'#febf63'}} className="fas fa-user-check"></i>
                     <h3 style={{marginTop: '2px',marginBottom: '0px',color: 'black'}}> Verify Users </h3>
                     </a>
@@ -84,23 +79,17 @@ class AdminNavBar extends Component{
                     <h3 style={{marginTop: '2px',color: 'black',marginBottom: '0px'}}> Course Details </h3>
                     </a>
                 </Link>
-                <Link to='./admin-settings'>
-                    <a style={{paddingBottom: '10px'}} style={{fontSize: '1.5rem', color:'#febf63'}} className="item">
-                    <i className="fas fa-cogs"></i>
-                    <h3 style={{marginTop: '2px',color: 'black', marginBottom: '0px'}}> Settings </h3>
-                    </a>
-                </Link>
-                <div onClick={this.logUserOut}>
-                    <a style={{position: 'absolute', bottom: '0'}} className="item">
+            
+                    <a onClick={this.logUserOut} style={{fontSize: '1.5rem', color:'#febf63'}} className="item">
                     <h3 style={{marginTop: '2px',color: 'black'}}> Log Out </h3>
                     </a>
-                </div>
+         
                 </div>
             </div>
             </div>
         </div>
-        
-    
+
+
         );
       }
 }

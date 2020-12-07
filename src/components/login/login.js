@@ -8,6 +8,7 @@ import UserProfile from '../.././utils/UserProfile';
 import { GoogleLogin } from 'react-google-login';
 
 
+
 //const clientId = "459178222733-akt56ten5kdp6vshn7n4bbololhh323i.apps.googleusercontent.com";
 
 // Works with both local and AWS
@@ -77,7 +78,7 @@ class Login extends Component {
 
 
                     if (UserProfile.getRole() === 'a'){
-                        return this.props.history.push('/admin-home');
+                        return this.props.history.push('/admin-verify-user');
                     }
                     else if (UserProfile.getRole() === 't'){
                         return this.props.history.push('/teacher-home');
@@ -237,18 +238,12 @@ class Login extends Component {
         const {errors} = this.state;
 
         this.checkUserStatus();
-        
+
         return (
-            
+
             <div className="App2">
 
-
-                <div>
-                    <NavBar/>
-                </div>
-
-
-                <div style={{paddingTop: '4%', paddingBottom: '2%'}} className="container">
+                <div style={{paddingTop: '4%', paddingBottom: '5%'}} className="container">
                     <div style={{paddingRight: '2%', paddingLeft: '2%'}} className="row myIntro">
                     <div style={{padding: '0% 3% 1% 3%', paddingTop: '2%'}} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
                         <form onSubmit={this.handleSubmit} noValidate>
@@ -256,17 +251,17 @@ class Login extends Component {
                             <h1 className="welcome" style={{marginTop: '1.5%', fontSize: '2.5rem', paddingBottom: '10px'}}> Login to EduForm </h1>
 
                             <div className="form-group">
-                                <input type= "email" id="email" name="email" className="form-control" placeholder="Enter email" style={{fontSize: '.9rem'}} onChange={this.handleChange} noValidate/>
+                                <input type= "email" id="email" name="email" className="form-control" placeholder="Enter email" style={{fontSize: '.9rem'}} onChange={this.handleEmail} noValidate/>
                                 {errors.email.length > 0 && <span className='error'>{errors.email}</span>}
                             </div>
 
                             <div className="form-group">
-                                <input type= "password" id="password" name="password" className="form-control" placeholder="Enter password" style={{fontSize: '.9rem'}} onChange={this.handleChange} noValidate/>
+                                <input type= "password" id="password" name="password" className="form-control" placeholder="Enter password" style={{fontSize: '.9rem'}} onChange={this.handlePassword} noValidate/>
                                 {errors.password.length > 0 && <span className='error'>{errors.password}</span>}
                             </div>
 
                             <button type="submit" className="btn btn-block log" style={{fontSize: '1.2rem', backgroundColor: '#febf63'}}> Log In </button>
-                            
+
                             <p style={{fontSize: '1rem', marginTop: "5px"}} className="forgot-password text-right">
                                 <Link to="/password-reset" style={{color:'#febf63'}}>Forgot password?</Link>
                             </p>
@@ -275,19 +270,13 @@ class Login extends Component {
                                 or you can sign in with
                             </p>
 
-                            {/*
-                            <div className="col-12">
-                                <img style={{paddingTop: '18px'}} alt='google' src={googleBtn} className="googleBtn" onClick={this.googleSignIn} />
-                            </div>
-                            */}
-
                             <div className="col-12" style={{paddingTop: '18px'}}>
                                 <GoogleLogin
                                     clientId={clientId}
                                     onSuccess={this.googleSignIn}
                                     onFailure={this.googleSignInFailed}
                                 >
-                                
+
                                     <span> Login with Google</span>
 
                                 </GoogleLogin>
@@ -295,7 +284,7 @@ class Login extends Component {
                             <div style={{marginBottom: '1.5%'}} className="ui horizontal divider">
                                 Or
                             </div>
-                            
+
                             <p style={{fontSize: '1.1rem', textAlign: 'left'}}> Need an Account? <Link style={{color:'#febf63'}} to="./sign-up"> Register </Link> </p>
 
                         </form>
@@ -305,7 +294,7 @@ class Login extends Component {
             </div>
 
         );
-    
+
 
 
     }
