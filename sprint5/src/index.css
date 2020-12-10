@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=David+Libre:wght@500&family=Noto+Serif+TC:wght@300&family=Orbitron:wght@700&family=PT+Serif:ital@1&family=Sansita+Swashed&family=Sedgwick+Ave&family=Source+Serif+Pro:ital,wght@1,600&display=swap');
+
+.studentWords{
+  font-family: 'Noto Serif TC', serif;
+  color: #febf63;
+}
+.eduheader{
+  font-family: 'Noto Serif TC', serif;
+  color: black;
+  
+}
+.teachWords4{
+  font-family: 'Noto Serif TC', serif;
+  color: white;
+}
+.edufont{
+  font-family: 'Noto Serif TC', serif;
+}
+.eduheader2{
+  font-family: 'Noto Serif TC', serif;
+  color: white;
+}
+.headerBackground{
+  background-color: #febf63;
+  font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue", sans-serif;
+}
+.eduheader3{
+  background-color: #febf63;
+}
+
+.teachWords{
+  font-family: 'Noto Serif TC', serif;
+  color: #febf63;
+}
+.teachWords2{
+  font-family: 'Noto Serif TC', serif;
+  color: white;
+}
+.announce{
+  font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue", sans-serif;
+}
+.thePill{
+  color: white;
+}
+.dashItems{
+  border-bottom-left-radius: 110px;
+  border-bottom-right-radius: 110px;
+
+
+}
+.backGroundSAT{
+  width: 100%;
+  height: cover;
+  background-color: white;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backGroundTeach{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backGroundTeachC{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backgroundGenericCourse{
+  width: 100%;
+  height: 450%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backGroundTeachCal{
+  width: 100%;
+  height: 320%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.backGroundTeachCC{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.navbar-brand{
+  font-family: 'Orbitron';
+}
+
+.auth-wrapper{
+  padding: 100px 2% 6% 2%;
+}
+.button2{
+
+  border: solid;
+
+  border-width: 2px;
+  font-size: 1rem;
+
+  padding-bottom: 30px;
+  padding-top: 0;
+  text-decoration: none;
+  width: 115px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+  height: 12px;
+}
+.App2 {
+  width: 100%;
+  height: 770px;
+  background-image: url(assets/wall4.jpg);
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+  padding-top: 50px;
+}
+.backGroundSet{
+  width: 100%;
+  height: 200%;
+  background-color: #1089ff;
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.App23 {
+  width: 100%;
+  height: 670px;
+  background-image: url(assets/wall4.jpg);
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+  padding-top: 50px;
+}
+.back{
+  background-image: url(assets/cat.jpg);
+  background-size: cover;
+}
+.error{
+  font-size: 1rem;
+  color: white;
+  display: relative;
+}
+.myLogIn {
+  margin: auto;
+  background-color: #1089ff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  border-radius: 15px;
+  border-style: solid;
+  border-color: white;
+}
+.text-primarys {
+  color: white;
+  font-family: 'David Libre';
+  font-size: 1.3rem;
+}
+.myIntro {
+  text-align: center;
+}
+.welcome {
+  font-family: 'Noto Serif TC', serif;
+}
+.welcome2{
+  font-size: 1.2rem;
+  padding-top: 1%;
+  padding-right: 7%;
+  margin-bottom: 8%;
+  font-family: 'Source Serif Pro';
+  color:black;
+}
+.eduheader{
+  color: white;
+}
+.mySignInWord {
+  font-size: 2rem;
+  color: black;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  margin-bottom: 2%;
+}
+.nav-item{
+  font-weight: bold;
+}
+.col-12{
+  width: 50%;
+  padding-left: 5%;
+}
+#phone{
+  font-family: sans-serif;
+}
+#email{
+  font-family: sans-serif;
+}
+#first-name{
+  font-family: sans-serif;
+}
+#last-name{
+  font-family: sans-serif;
+}
+#password{
+  font-family: sans-serif;
+}
+#confirmPassword{
+  font-family: sans-serif;
+}
+
+.userCardComponent{
+  position: absolute;
+  margin-left: 300px;
+  margin-top: -450px;
+}
+
+
+.userCardColumn{
+  margin-left: 20px;
+}
+
+.divrole{
+  text-align: right;
+}
+
+
+/* Course Form admin */
+
+* {
+  box-sizing: border-box;
+}
+
+.courseForm{
+
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    min-width: 100px;
+    min-height: 400px;
+    padding: 20px 40px 40px 40px;
+    margin-left: 400px;
+    margin-top: -500px;
+    border-radius: 6px;
+    box-shadow: 0px 8px 36px #222;
+    background-color: #fefefe;
+
+}
+
+form > h1 {
+  display: flex;
+  justify-content: center;
+  font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 2em;
+  font-weight: lighter;
+  margin-top: 0.25em;
+  color: #222;
+  letter-spacing: 2px;
+}
+
+
+
+input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 100%;
+}
+input, select {
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #d6d1d5;
+  margin-top: 5px;
+}
+
+button {
+  min-width: 100%;
+  cursor: pointer;
+  margin-right: 0.25em;
+  margin-top: 0.5em;
+  padding: 	0.938em;
+  border: none;
+  border-radius: 4px;
+  background-color: #22223B;
+  color: #fefefe;
+}
+button:hover {
+  background-color: #4A4E69;
+  color: #fefefe;
+}
+
+
+.submit {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+#outer
+{
+    width:100%;
+    text-align: center;
+    margin-top: 2%;
+}
+.inner
+{
+    display: inline-block;
+    margin: 2%;
+    height: 30px;
+}
+
+
+.userDisplay{
+    background-color: #febf63;
+    color: black;
+    border: 2px solid orange;
+}
+
+
+
+.ud-header{
+    width: 100%;
+    background-color: white;
+    background-repeat: repeat;
+    position: relative;
+    background-size: cover;
+}
+
+
+.ud-table-comp{
+    position: relative;
+}
+
+table {
+    justify-content: center;
+    border: 1px solid gray;
+}
+td {
+    border: 1px solid gray;
+    width: 12em;
+    font-size: 20px;
+}
+
+thead{
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+
+.stock-container{
+    margin-top: 100px;
+    margin-left: 300px;
+}
+
+.adminBackground{
+  background-color: #febf63;
+  height: 700px;
+  background-size: cover;
+}
+
+.adminWordHead{
+  font-family: 'Noto Serif TC', serif;
+}
+
+.homePage{
+  background-color: #febf63;
+}
+.homePic{
+  height: 600px;
+  background-image: url(assets/learn.jpg);
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.adminWordHead2{
+  font-family: 'Noto Serif TC', serif;
+  color: #1089ff;
+}
