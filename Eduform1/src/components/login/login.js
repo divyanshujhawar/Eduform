@@ -51,6 +51,8 @@ class Login extends Component {
     async loginUser(event){
         event.preventDefault();
 
+        console.log("Check 1");
+
         this.state.user.email = document.getElementById("email").value;
 
         const salt = bcrypt.genSaltSync(10);
@@ -58,6 +60,8 @@ class Login extends Component {
 
         //this.state.user.password = hash;
         this.state.user.password = document.getElementById("password").value;
+
+        console.log("User Details: ", this.state.user);
 
         try{
             const response = await fetch('/user/login', {
@@ -68,7 +72,7 @@ class Login extends Component {
             .then(res => res.json())
             .then(jsonData => {
 
-                
+                console.log('Loggggged In!');
 
                 if (jsonData.status === "SUCCESS!"){
 
