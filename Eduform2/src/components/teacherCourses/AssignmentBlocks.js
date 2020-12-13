@@ -6,6 +6,8 @@ import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
 
+import UserProfile from '../.././utils/UserProfile';
+
 class AssignmentBlocks extends React.Component {
 
     constructor(props) {
@@ -36,7 +38,7 @@ class AssignmentBlocks extends React.Component {
     getAllCourseAssignments() {
 
         try {
-            const response = fetch('/teacher/getCourseAssignments/' + this.state.course + '?email=' + 'shubham@iu.edu', {
+            const response = fetch('/teacher/getCourseAssignments/' + this.state.course + '?email=' + UserProfile.getEmail(), {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             })

@@ -11,6 +11,8 @@ import NavBar from '../student/NewNavbar';
 import Notifications from '../teacherCourses/NotificationBlocks.js';
 import Bar from '../teacher/TeacherNavigation.js';
 
+import UserProfile from '../.././utils/UserProfile';
+
 class GradeAssignments extends React.Component {
 
     constructor(props) {
@@ -114,11 +116,7 @@ class GradeAssignments extends React.Component {
 
     downloadAssignment(){
 
-        console.log('Downloading...')
-
         var studentFileName = document.getElementById("");
-
-        //var studentFileName = 'Assignment1_student@iu.pdf';
 
         try {
             const response = fetch('/teacher/download/studentSubmittedAssignment' + `?assignmentName=${studentFileName}`, {
@@ -182,7 +180,7 @@ class GradeAssignments extends React.Component {
     getAssignmentinfo() {
 
         try {
-            const response = fetch('/teacher/getCourseAssignments/' + this.props.match.params.courseCode + '?email=shubham@iu.edu', {
+            const response = fetch('/teacher/getCourseAssignments/' + this.props.match.params.courseCode + '?email=' + UserProfile.getEmail(), {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             })

@@ -395,7 +395,7 @@ class GenericChat extends React.Component {
                         <div style={{ textAlign: 'left' }} className="col-md-12 col-sm-12">
                             <img style={{ width: '70px', height: '70px', marginTop: '1.5%' }} src={Logo} alt="edLogo" />
                             <h1 className={`${this.state.theWords}`} style={{ fontSize: '2.8rem' }}><Link  to={{
-                                        pathname: '/teacher-course/' + this.props.match.params.courseCode, state: {
+                                        pathname: '/course/' + this.props.match.params.courseCode, state: {
                                             currentClass: this.state.myCourse
                                         }
                                         

@@ -52,14 +52,14 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
         }
 
         this.state = {
+
+            assignments: [],
+
             // Query here specifically by due_date, if due_date matches the selectedDate below. Doing a makeshift query in render()
             // below with an if statement.
             //IF we don't do this, also okay, just put all assignment JSON info here.
             // IF you do, then remove the if statement form inside the render() portion.
             selectedDate: this.props.datePass,
-
-            assignments: [],
-
             
             pageTheme: cssType,
             theBackground: whichCssbackground,
@@ -96,7 +96,6 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
     }
 
     render() {
-
 
         const upcoming = [];
         var i = 0;

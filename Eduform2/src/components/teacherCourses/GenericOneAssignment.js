@@ -8,6 +8,8 @@ import Logo from '../.././assets/edLogo.png';
 import NavBar from '../student/NewNavbar';
 import Bar from '../student/StudentNavigation.js';
 
+import UserProfile from '../.././utils/UserProfile';
+
 class GenericOneAssignment extends React.Component {
 
     constructor(props) {
@@ -95,7 +97,7 @@ class GenericOneAssignment extends React.Component {
         } 
 
 
-        let uploadRequest = `{"courseCode": "${courseCode}","userEmail": "shubham@iu.edu","filename": "${assignmentName}", \
+        let uploadRequest = `{"courseCode": "${courseCode}","userEmail": ${UserProfile.getEmail()},"filename": "${assignmentName}", \
                             "maxPoints": ${assignmentMaxPoints},"dueDate": "${assignmentDueDate}"}`;
 
 

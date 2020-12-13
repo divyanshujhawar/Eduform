@@ -7,6 +7,8 @@ import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
 import Home from '../dashboard/TeacherHome.js';
 
+import UserProfile from '../.././utils/UserProfile';
+
 class TeacherAnnounceBlocks extends React.Component {
 
     constructor(props) {
@@ -83,7 +85,7 @@ class TeacherAnnounceBlocks extends React.Component {
 
     getLastWeekAnnouncements(){
         try {
-            const response = fetch('/teacher/getLastWeekAnnouncements/' + 'shubham@iu.edu', {
+            const response = fetch('/teacher/getLastWeekAnnouncements/' + UserProfile.getEmail(), {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             })

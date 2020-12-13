@@ -5,6 +5,7 @@ import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.
 import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
+import UserProfile from '../../utils/UserProfile';
 
 class FilteredAssignments extends React.Component {
 
@@ -130,7 +131,7 @@ class FilteredAssignments extends React.Component {
 
     getUpcomingCourseAssignments() {
         try {
-            const response = fetch('/teacher/getNextWeekCourseAssignments/' + this.state.class + '?email=' + 'shubham@iu.edu', {
+            const response = fetch('/teacher/getNextWeekCourseAssignments/' + this.state.class + '?email=' + UserProfile.getEmail(), {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             })

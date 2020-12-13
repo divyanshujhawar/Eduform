@@ -11,6 +11,7 @@ import Announcements from '../teacher/TeacherBasedAnnouncements.js';
 import Assignments from './FilteredAssignments.js';
 
 import CourseProfile from '../.././utils/CourseProfile';
+import UserProfile from '../.././utils/UserProfile';
 
 const writeJsonFile = require('write-json-file');
 
@@ -186,7 +187,7 @@ class GenericCourse extends React.Component {
         }
 
 
-        let uploadRequest = `{"courseCode": "${courseCode}","userEmail": "shubham@iu.edu","filename": "${assignmentName}", \
+        let uploadRequest = `{"courseCode": "${courseCode}","userEmail": ${UserProfile.getEmail()},"filename": "${assignmentName}", \
                             "maxPoints": ${assignmentMaxPoints},"dueDate": "${assignmentDueDate}"}`;
 
 
@@ -243,7 +244,7 @@ class GenericCourse extends React.Component {
         this.state.newAnnouncement.announcementText = announceText;
 
         try {
-            const response = await fetch('/teacher/makeAnnouncement/' + 'shubham@iu.edu', {
+            const response = await fetch('/teacher/makeAnnouncement/' + UserProfile.getEmail(), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify(this.state.newAnnouncement)

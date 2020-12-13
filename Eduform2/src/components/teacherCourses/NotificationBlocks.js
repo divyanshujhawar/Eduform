@@ -6,6 +6,8 @@ import Semantic from 'semantic-ui-css/semantic.min.css';
 import Personal from '../../assets/cat.jpg';
 import Logo from '../.././assets/edLogo.png';
 
+import UserProfile from '../.././utils/UserProfile';
+
 class NotificationBlocks extends React.Component {
 
     constructor(props) {
@@ -92,7 +94,7 @@ class NotificationBlocks extends React.Component {
 
     getCourseAnnouncements(){
         try {
-            const response = fetch('/teacher/getLastWeekCourseAnnouncements/' + this.state.theCourse+'?email='+'shubham@iu.edu', {
+            const response = fetch('/teacher/getLastWeekCourseAnnouncements/' + this.state.theCourse+'?email='+ UserProfile.getEmail(), {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             })
