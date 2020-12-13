@@ -68,7 +68,7 @@ class Login extends Component {
             .then(res => res.json())
             .then(jsonData => {
 
-                
+                console.log("JSON: ", jsonData);
 
                 if (jsonData.status === "SUCCESS!"){
 
@@ -95,6 +95,7 @@ class Login extends Component {
 
         } catch (error){
             alert(error);
+            console.log(error);
         }
 
     } 
