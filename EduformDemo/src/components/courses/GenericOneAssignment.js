@@ -42,7 +42,7 @@ class GenericOneAssignment extends React.Component {
             courseCode: this.props.match.params.courseCode,
             assignmentId: this.props.match.params.assignmentId,
             myCourseName: courseName,
-            assignmentName: an,
+            assignmentName: this.props.location.theFile,
             //getVal: currentClass,
 
             file: '',
@@ -54,6 +54,7 @@ class GenericOneAssignment extends React.Component {
         this.displayer = this.displayer.bind(this);
         
         this.submitStudentCourseAssignment = this.submitStudentCourseAssignment.bind(this);
+        this.downloadAssignment = this.downloadAssignment.bind(this);
 
     }
 
@@ -65,6 +66,56 @@ class GenericOneAssignment extends React.Component {
         }
         else {
             return <p></p>;
+        }
+    }
+
+    downloadAssignment()
+    {
+        let baseURL = 'https://eduform-bucket.s3.us-east-2.amazonaws.com/';
+
+        let downloadLink = '';
+
+        let testLink = 'https://eduform-bucket.s3.us-east-2.amazonaws.com/submission/CS1111/Assignment7_sgaikwad%40iu.pdf';
+
+        try {
+            const response = fetch('/student/download/assignedAssignment' + `?assignmentName=${this.state.assignmentName}&courseCode=${this.state.courseCode}`,  {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            })
+                .then(res => res.json())
+                .then(jsonData => {
+                    console.log(jsonData);
+
+                    downloadLink = baseURL + jsonData.result[0].assignmentPath;
+                })
+                .then((blob) => {
+                    const link = document.createElement('a');
+                    
+                    document.body.appendChild(link);
+                    link.href = downloadLink;
+                    link.setAttribute('download', `${downloadLink}`);
+                    link.setAttribute("target", "_blank");
+                    link.click();
+                    document.body.removeChild(link);
+                    /*console.log("Download Link: ", testLink);
+
+                    const url = window.URL.createObjectURL(new Blob([blob]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', `${testLink}`);
+                    
+                    console.log(testLink);
+                    document.body.appendChild(link);
+
+                    link.click();
+
+                    link.parentNode.removeChild(link);*/
+
+
+                });
+
+        } catch (error) {
+            alert(error);
         }
     }
 
@@ -195,6 +246,11 @@ class GenericOneAssignment extends React.Component {
                                     <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" onChange={e => this.setFile(e)}/>
                                     <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="col-md-7 col-sm-12">
+                            <div>
+                                <button style={{ backgroundColor: '#febf63', color: '#1089ff', width: '50px'}} class="btn btn-outline-secondary" type="button" id="dab" onClick={this.downloadAssignment}>Download File</button>
                             </div>
                         </div>
                     </div>

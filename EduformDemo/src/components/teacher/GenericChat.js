@@ -393,17 +393,24 @@ class GenericChat extends React.Component {
        textElement.style.marginLeft = '5px';
         var messageText = document.createTextNode(message.content);
     
-        while(messageText === null){}
-        textElement.appendChild(messageText);
-        while(textElement === null){}
-        messageElement.appendChild(textElement);
-        while(messageElement === null){}
-        var messageArea = document.querySelector('#chatForm');
-    
-        messageArea.appendChild(messageElement);
+        if(messageText === null || textElement === null || messageArea === null || messageElement === null ||
+            messageText === undefined || textElement === undefined || messageArea === undefined || messageElement === undefined)
+        {
+
+        }
+        else{
+            while(messageText === null){}
+            textElement.appendChild(messageText);
+            while(textElement === null){}
+            messageElement.appendChild(textElement);
+            while(messageElement === null){}
+            var messageArea = document.querySelector('#chatForm');
+        
+            messageArea.appendChild(messageElement);
 
 
-        messageArea.scrollBottom = messageArea.scrollHeight;
+            messageArea.scrollBottom = messageArea.scrollHeight;
+        }
     }
 
     render() {

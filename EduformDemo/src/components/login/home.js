@@ -146,16 +146,12 @@ class Home extends React.Component {
     render(){
 
         return(
-
-            <div className="homsePage">
-                <div className="homePic flex-container">
-
-                <nav className="navbar navbar-expand-lg navbar-dark">
-                
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="homsePage">
+                <div class="homePic flex-container">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        
+                        <div class="collapse navbar-collapse" id="navbarNav">
                         <ul style={{fontSize: '1.2rem'}} class="navbar-nav ml-auto adminWordHead">
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -166,117 +162,48 @@ class Home extends React.Component {
                         <li class="nav-item">
                             <Link class="nav-link" to="sign-up">Register</Link>
                         </li>
-                  
+
                         </ul>
                     </div>
-                    </nav>
-
-                    <h1 className="adminWordHead" style={{fontSize: '3.8rem',color: 'white'}}><b>Welcome to Eduform</b></h1>
-                    <p className="adminWordHead" style={{fontSize: '1.3rem',color: 'white'}}><b>The Future of Education Starts Here!</b></p>
-                    <br/>
-                    <br/>
-                    <p className="adminWordHead" style={{fontSize: '1rem',color: 'white'}}>{this.state.transitionWord}</p>
-        
+                             </nav><h1 class="adminWordHead" style={{fontSize: '3.8rem', color: 'white'}}><b>Welcome to Eduform</b></h1>
+                        <p class="adminWordHead" style={{fontSize: '1.3rem', color: 'white'}}><b>The Future of Education Starts Here!</b></p>
+                        <br/><br/>
+                        <p class="adminWordHead" style={{fontSize: '1rem', color: 'white'}}>{this.state.transitionWord}</p>
+                        </div>
+                        <div class="flex-container" style={{padding: '60px 120px 90px 80px', height: '100%', backgroundColor: 'rgb(65, 68, 75)'}}>
+                            <div class="row" style={{textAlign: 'center'}}>
+                                <h1 class="adminWordHead2" style={{paddingBottom: '40px', margin: 'auto', fontSize: '3.7rem'}}>Core Features</h1>
+                            </div><div class="row" style={{backgroundColor: 'rgb(16, 137, 255)', padding: '80px 20px 60px', borderColor: 'rgb(16, 137, 255)', marginLeft: '0px'}}>
+                            <div class="col-7" style={{borderLeft: 'solid',borderColor: 'white',borderTopColor: 'white', borderRightColor: 'white', borderBottomColor: 'white'}}>
+                                <h2 class="adminWordHead2" style={{color: 'white',paddingRight: '95px', paddingTop: '100px'}}>Elegant UI and Dynamic Dashboard</h2>
+                                </div>
+                            <div class="col-5" style={{borderWidth: '1px', borderRadius: '15px', paddingTop: '20px', width: '750px', height: '237px', backgroundColor: 'rgb(65, 68, 75)'}}>
+                            <div class="ui card"><a class="image" href="#"><img src={this.dashImage()} style={{height: '199px', width: '403px'}}/></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style={{marginTop: '15px', backgroundColor: 'rgb(16, 137, 255)', padding: '80px 20px 60px', marginLeft: '0px'}}>
+                        <div class="col-5" style={{borderWidth: '1px', borderRadius: '15px', paddingTop: '20px', width: '740px',height: '237px', backgroundColor: 'rgb(65, 68, 75)'}}>
+                            <div class="ui card"><a class="image" href="#"><img src={this.searchImage()} style={{height: '199px', width: '403px'}}/></a>
+                            </div>
+                        </div>
+                    <div class="col-7" style={{borderRight: 'solid',borderColor: 'white',borderTopColor: 'white', borderBottomColor: 'white', borderLeftColor: 'white'}}>
+                        <h2 class="adminWordHead2" style={{color: 'white',paddingLeft: '95px', paddingTop: '100px'}}>Powerful Search Techniques</h2>
+                    </div></div><div class="row" style={{marginTop: '15px', backgroundColor: 'rgb(16, 137, 255)', padding: '80px 20px 60px', marginLeft: '5px'}}>
+                    <div class="col-7" style={{borderLeft: 'solid', borderColor: 'white',borderTopColor: 'white',borderRightColor: 'white', borderBottomColor: 'white'}}>
+                        <h2 class="adminWordHead2" style={{color: 'white',paddingRight: '75px', paddingTop: '100px'}}>Custom Themes and More</h2>
+                    </div><div class="col-5" style={{borderWidth: '1px', borderRadius: '15px', paddingTop: '20px', width: '750px', height: '237px', backgroundColor: 'rgb(65, 68, 75)'}}>
+                    <div class="ui card"><a class="image" href="#"><img src={this.themeImage()} style={{height: '199px', width: '403px'}}/></a>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="homePic flex-container">
+                    </div>
                     
-                </div>
-                <div style={{padding: '60px 120px 90px 80px',height: '100%',backgroundColor: '#febf63'}} className="flex-container">
-                    <div  style={{textAlign: 'center'}} className="row">
-                        <h1 className="adminWordHead2" style={{margin: 'auto',fontSize: '3.4rem'}}>Core Features</h1>
-                        
-                      
-                    </div>
-                    <div style={{borderColor: '#1089ff',paddingTop: '130px',marginLeft: '0px'}} className="row">
-                        <div style={{borderLeft: 'solid', borderColor: 'white'}} className="col-7">
-                            <h2 style={{paddingRight: '95px',paddingTop: '100px'}} className="adminWordHead2">Elegant UI and Dynamic Dashboard</h2>
-                        </div>
-                        <div style={{borderWidth: '1px',borderRadius: '15px',paddingTop: '20px',width: '750px',height: '237px',backgroundColor: 'white'}} className="col-5">
-                        <div class="ui card">
-                            <a class="image" href="#">
-                                <img style={{height: '200px', width: '420px'}} src={this.dashImage()}/>
-                            </a>
-                       
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{paddingTop: '110px',marginLeft: '0px'}} className="row">
-                        <div  style={{borderWidth: '1px',borderRadius: '15px',paddingTop: '20px',width: '740px',height: '237px',backgroundColor: 'white'}} className="col-5">
-                        <div class="ui card">
-                            <a class="image" href="#">
-                                <img style={{height: '200px', width: '420px'}} src={this.searchImage()}/>
-                            </a>
-                       
-                            </div>
-                        </div>
-                        <div style={{borderRight: 'solid', borderColor: 'white'}}className="col-7">
-                             <h2 style={{paddingLeft: '95px',paddingTop: '100px'}} className="adminWordHead2">Powerful Search Techniques</h2>
-                        </div>
-                    </div>
-                    <div style={{paddingTop: '150px',marginLeft: '5px'}} className="row">
-                    <div style={{borderLeft: 'solid', borderColor: 'white'}} className="col-7">
-                            <h2 style={{paddingRight: '75px',paddingTop: '70px'}} className="adminWordHead2">Custom Themes and More</h2>
-                        </div>
-                        <div style={{borderWidth: '1px',borderRadius: '15px',paddingTop: '20px',width: '750px',height: '237px',backgroundColor: 'white'}} className="col-5">
-                        <div class="ui card">
-                            <a class="image" href="#">
-                                <img style={{height: '200px', width: '420px'}} src={this.themeImage()}/>
-                            </a>
-                       
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="homePic flex-container">
-
-                </div>
-
-                <div style={{padding: '20px 20px 20px 20px',height: '600px',backgroundColor: '#1089ff'}} className="flex-container">
-                <h1 className="adminWordHead3" style={{margin: 'auto',fontSize: '3.4rem'}}>Testimonials</h1>
-                        
-                      
-                    <div style={{margin: 'auto',width: '50%'}}>
-                                <div style={{paddingTop: '100px'}} id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img src={Cup1} style={{width:'100%',height: '400px'}}class="d-block" alt="..."/>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                    </div>
-                    <div class="carousel-item">
-                    <img src={Cup1} style={{width:'100%',height: '400px'}}class="d-block" alt="..."/>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    </div>
-                    <div class="carousel-item">
-                    <img src={Cup1} style={{width:'100%',height: '400px'}}class="d-block" alt="..."/>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </div>
-                </div>
-                </div>
-            </div>
+                       </div>
+              
+         
     
         );
 
@@ -285,6 +212,5 @@ class Home extends React.Component {
     }
 
 }
-
 
 export default Home;

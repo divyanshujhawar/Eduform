@@ -84,7 +84,7 @@ class AssignmentBlocks extends React.Component {
                         <div style={{ borderStyle: 'solid', borderWidth: '.5px', width: '810px' }}> <Link to={{
                             pathname: '/course/'+ this.state.course + '/assignments/' + id, passCourseState: {
                                courseName: this.state.assignments[i].filename, date: this.state.assignments[i].dueDate, mp: this.state.assignments[i].maxPoints, an: this.state.assignments[i].filename
-                            }, toggleState: this.state.toggler
+                            }, toggleState: this.state.toggler, theFile : this.state.assignments[i].filename
                         }}> <button class="ui light basic button"><b style={{ color: '#febf63', fontSize: '1.2rem' }}>{this.state.assignments[i].filename.split('.')[0]}</b>
                                 <p style={{ color: '#febf63' }}> Due: {queryDate} - {this.state.assignments[i].maxPoints} pts</p></button> </Link></div>
                     </div>
@@ -103,7 +103,7 @@ class AssignmentBlocks extends React.Component {
                             <div style={{ borderStyle: 'solid', borderWidth: '.5px', width: '810px' }}> <Link to={{
                                 pathname: '/course/'+ this.state.course + '/assignments/' + id, passCourseState: {
                                     assignID: id, courseName: this.state.assignments[i].filename, date: this.state.assignments[i].dueDate, mp: this.state.assignments[i].maxPoints
-                                }, toggleState: this.state.toggler
+                                }, toggleState: this.state.toggler, theFile : this.state.assignments[i].filename
                             }}> <button class="ui light basic button"><b style={{ color: '#febf63', fontSize: '1.2rem' }}>{this.state.assignments[i].filename.split('.')[0]}</b>
                                     <p style={{ color: '#febf63' }}> Due Date: {queryDate} - {this.state.assignments[i].maxPoints} pts</p></button> </Link></div>
                         </div>);

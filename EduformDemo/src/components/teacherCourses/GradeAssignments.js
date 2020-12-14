@@ -11,6 +11,7 @@ import NavBar from '../student/NewNavbar';
 import Notifications from '../teacherCourses/NotificationBlocks.js';
 import Bar from '../teacher/TeacherNavigation.js';
 
+
 import UserProfile from '../.././utils/UserProfile';
 
 class GradeAssignments extends React.Component {
@@ -114,17 +115,49 @@ class GradeAssignments extends React.Component {
     }
     */
 
-    downloadAssignment(){
+    downloadAssignment = (event, theFile) => {
 
-        var studentFileName = document.getElementById("");
+        let baseURL = 'https://eduform-bucket.s3.us-east-2.amazonaws.com/';
 
+        let downloadLink = '';
+
+        let testLink = 'https://eduform-bucket.s3.us-east-2.amazonaws.com/submission/CS1111/Assignment7_sgaikwad%40iu.pdf';
+
+
+        event.preventDefault();
         try {
-            const response = fetch('/teacher/download/studentSubmittedAssignment' + `?assignmentName=${studentFileName}`, {
+            const response = fetch('/teacher/download/studentSubmittedAssignment' + `?assignmentName=${theFile}`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             })
                 .then(res => res.json())
                 .then(jsonData => {
+                    console.log(jsonData);
+
+                    downloadLink = baseURL + jsonData.result[0].submissionPath;
+                })
+                .then((blob) => {
+                    const link = document.createElement('a');
+                    
+                    document.body.appendChild(link);
+                    link.href = downloadLink;
+                    link.setAttribute('download', `${downloadLink}`);
+                    link.setAttribute("target", "_blank");
+                    link.click();
+                    document.body.removeChild(link);
+                    /*console.log("Download Link: ", testLink);
+
+                    const url = window.URL.createObjectURL(new Blob([blob]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', `${testLink}`);
+                    
+                    console.log(testLink);
+                    document.body.appendChild(link);
+
+                    link.click();
+
+                    link.parentNode.removeChild(link);*/
 
 
                 });
@@ -229,12 +262,14 @@ class GradeAssignments extends React.Component {
 
                         if (this.state.assignments[i].assignmentSubmissions[k].points === 0) {
                             let studentFileName = this.state.assignments[i].assignmentSubmissions[k].filename;
+             
                             
                             headerInfo[j].push(
                                 <div class="item">
                                     <div class="right floated content">
-                                        <div style={{ color: 'white' }} value={studentFileName}  id="fileName" class="ui button bg-danger" onclick={this.downloadAssignment}>View Submission</div>
-
+                                        <form onSubmit={(event) => this.downloadAssignment(event, studentFileName)} novalidate>
+                                    <button type="submit" style={{ color: 'white' }} class="ui button bg-danger" >View Submission</button>
+                                    </form>
                                         <div style={{ paddingBottom: '4px' }} className="btn-group dropleft">
                                             <div style={{ color: 'white' }} type="button" className="ui button bg-danger dropdown-toggle announce" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                 Grade Submission
