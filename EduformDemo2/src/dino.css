@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Underdog&display=swap');
+
+.dinowords{
+    font-family: 'Underdog', cursive;
+    color: black;
+}
+.dinowords2{
+  font-family: 'Underdog', cursive;
+  color: white;
+}
+.dinofont{
+  font-family: 'Underdog', cursive;
+}
+.dinobackground{
+width: 100%;
+  height: 250%;
+  background-color: #8db596;
+  
+  background-repeat: repeat;
+  position: absolute;
+  background-size: cover;
+}
+.dinoheader{
+  color: white;
+  font-family: 'Underdog', cursive;
+}
