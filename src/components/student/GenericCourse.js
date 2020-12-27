@@ -14,7 +14,7 @@ import Bar from './StudentNavigation.js';
 
 import CourseProfile from '../.././utils/CourseProfile';
 
-const courseInfo = [];
+//const courseInfo = [];
 
 class GenericCourse extends React.Component {
 
@@ -42,7 +42,10 @@ class GenericCourse extends React.Component {
         }
         this.state = {
 
-            currentCourseCode: '',
+            currentCourseCode: 'P456',
+
+            //studentCourse: [{'courseName' : "Software Engineering", "courseCode": "P456", "course_description" : 
+            //"I am a first generation Millionaire"}],
 
             studentCourse: [],
 
@@ -93,8 +96,6 @@ class GenericCourse extends React.Component {
 
        this.state.studentCourse = CourseProfile.getCourseProfile();
 
-
-
         const courseInfo = [];
 
         let i = 0;
@@ -110,7 +111,7 @@ class GenericCourse extends React.Component {
                                 }
                             }} > <i style={{ color: '#febf63', marginRight: '20px' }} class="fas fa-chevron-circle-left"></i> </Link>
                             {this.state.studentCourse[i].courseCode} - {this.state.studentCourse[i].courseName}</h1>
-                        <p style={{ color: 'white' }}> {this.state.studentCourse[i].course_description}</p>
+                        <p style={{ color: 'white' }}> {this.state.studentCourse[i].courseDetails}</p>
                         <hr style={{ marginBottom: '30px' }} />
                     </div>
                 );

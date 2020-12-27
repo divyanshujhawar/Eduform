@@ -75,7 +75,10 @@ class CourseBlocks extends React.Component {
 
         this.state = {
 
-            studentCourses: [],
+            studentCourses: [{"courseName" : "SE", "courseCode" : "P456"},{"courseName" : "SE", "courseCode" : "P456"}
+        ,{"courseName" : "SE", "courseCode" : "P456"},{"courseName" : "SE", "courseCode" : "P456"}],
+
+            //studentCourses: [],
 
             pageTheme: cssType,
 
@@ -110,6 +113,8 @@ class CourseBlocks extends React.Component {
 
                     CourseProfile.setCourseProfile(jsonData.result);
 
+                    console.log(jsonData.result);
+
                 });
 
         } catch (error) {
@@ -119,6 +124,8 @@ class CourseBlocks extends React.Component {
 
   
     render() {
+
+        
         const courseItems = [];
 
         let i = 0;

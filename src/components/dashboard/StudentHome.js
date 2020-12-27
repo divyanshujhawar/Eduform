@@ -148,13 +148,13 @@ class StudentHome extends React.Component {
                         <div style={{ paddingRight: '20%', textAlign: 'left' }} className="flex-col-md-8 flex-col-sm-12">
                             <img style={{ width: '70px', height: '70px', marginTop: '1.5%' }} src={Logo} alt="edLogo" />
                             <h1 className={`${this.state.theWords}`} style={{ fontSize: '2.6rem' }}> Upcoming Assignments</h1>
-                            <hr style={{ marginBottom: '30px' }} />
+                            <hr style={{marginBottom: '30px' }} />
                             <Upcoming styler={this.state.pageTheme} />
                         </div>
                         {this.state.pageSplit}
                         <div style={{ marginTop: '100px', textAlign: 'left' }} className="flex-col-md-3 flex-col-sm-12">
                             <h1 className={`${this.state.theWords}`} style={{ fontSize: '2.6rem' }}> Announcements</h1>
-                            <hr style={{ marginBottom: '30px' }} />
+                            <hr style={{marginBottom: '30px' }} />
                             <Announce getstyle={this.state.pageTheme} />
                         </div>
                     </div>

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import AdminNavBar from './AdminNavBar.js';
+import Logo from '../.././assets/edLogo.png';
+import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Semantic from 'semantic-ui-css/semantic.min.css';
 
 
 class AddNewCourse extends Component {
@@ -143,14 +146,19 @@ class AddNewCourse extends Component {
         const {errors} = this.state;
 
         return (
-            <div className="backGroundSAT">
-                <div >
-                    <AdminNavBar />
-                </div>
-
-                <div style={{ paddingTop: '4%', paddingBottom: '2%' }} className="container">
-                    <div style={{ paddingRight: '2%', paddingLeft: '2%' }} className="row myIntro">
-                        <div style={{ padding: '0% 3% 1% 3%', paddingTop: '2%' }} className="col-lg-5 col-md-7 bg-black myLogIn text-primarys">
+            <div className="adminBackground">
+                    <div style={{paddingRight: '5%',paddingLeft: '190px'}} className="flex-container">
+                        <div style={{marginBottom: '20px',paddingTop: '20px'}} className="row">
+                            <div style={{textAlign: 'left' }} className="flex-col-md-8 flex-col-sm-12">
+                                <img style={{backgroundColor: '#1089ff',width: '70px', height: '70px', marginTop: '2.5%' }} src={Logo} alt="edLogo" />
+                                <h1 className="adminWordHead" style={{fontSize: '2.6rem' }}> Add Courses</h1>
+                                <hr style={{backgroundColor: 'black',marginBottom: '20px' }} />
+                           
+                            </div>
+                        </div>
+                    <div style={{paddingRight: '2%', paddingLeft: '2%' }} className="row myIntro">
+                        <div style={{width: '500px',marginTop: '16px',padding: '0% 3% 1% 3%', paddingTop: '2%',paddingBottom: '2%' }} className="flex-col-sm-12 flex-col-md-12 bg-black myLogIn text-primarys">
+                           
                             <form id="course-form" onSubmit={this.handleSubmit} noValidate>
 
                                 <h1 className="welcome" style={{ marginTop: '1.5%', fontSize: '2.5rem', paddingBottom: '10px' }}> Add New Course </h1>
@@ -166,7 +174,7 @@ class AddNewCourse extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <input type="text" id="courseDescription" name="courseDescription" className="form-control" placeholder="Enter course description" style={{ fontSize: '.9rem' }} onChange={this.handleChange} noValidate />
+                                    <textarea type="text" id="courseDescription" name="courseDescription" className="form-control" placeholder="Enter course description" style={{height: '70px',fontSize: '.9rem' }} onChange={this.handleChange} noValidate />
                                     {errors.courseDescription.length > 0 && <span className='error'>{errors.courseDescription}</span>}
                                 </div>
 
@@ -177,6 +185,7 @@ class AddNewCourse extends Component {
                             </form>
                         </div>
                     </div>
+                    <AdminNavBar />
                 </div>
 
                 {/*

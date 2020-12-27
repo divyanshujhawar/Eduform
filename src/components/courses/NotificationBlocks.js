@@ -15,6 +15,7 @@ class NotificationBlocks extends React.Component {
             theCourse: this.props.whichCourse,
 
             courseAnnouncements: [],
+            userPassedInput : this.props.UsersSearch,
 
             announcements: [
                 {
@@ -28,49 +29,49 @@ class NotificationBlocks extends React.Component {
                     ano_id: 57,
                     ano_text: 'Office Hours have been changed this week to: 5-7pm on Thursday.',
                     ano_date: '10/30/2020',
-                    course_code: 'CS1113',
+                    course_code: 'CS1111',
                     course_idl: 4,
                 },
                 {
                     ano_id: 58,
                     ano_text: 'Lab 7 will be released this evening.',
                     ano_date: '10/25/2020',
-                    course_code: 'CS1009',
+                    course_code: 'P456',
                     course_idl: 23,
                 },
                 {
                     ano_id: 59,
                     ano_text: 'Assignment 3 has been graded.',
-                    ano_date: '10/27/2020',
-                    course_code: 'CS1006',
+                    ano_date: '9/27/2020',
+                    course_code: 'P456',
                     course_idl: 11,
                 },
                 {
                     ano_id: 60,
                     ano_text: 'Project has been released.',
                     ano_date: '10/28/2020',
-                    course_code: 'CS1006',
+                    course_code: 'P456',
                     course_idl: 11,
                 },
                 {
                     ano_id: 61,
                     ano_text: 'Exam 1 grades have been graded.',
-                    ano_date: '10/31/2020',
-                    course_code: 'CS1111',
+                    ano_date: '8/31/2020',
+                    course_code: 'P456',
                     course_idl: 6,
                 },
                 {
                     ano_id: 62,
                     ano_text: 'Practice Exam for the Midterm has been opened.',
                     ano_date: '10/18/2020',
-                    course_code: 'CS2145',
+                    course_code: 'P456',
                     course_idl: 12,
                 },
                 {
                     ano_id: 63,
                     ano_text: 'Practice Exam for the Midterm has been closed.',
                     ano_date: '10/20/2020',
-                    course_code: 'CS1112',
+                    course_code: 'P456',
                     course_idl: 2,
                 },
             ]
@@ -107,17 +108,34 @@ class NotificationBlocks extends React.Component {
 
     render() {
 
+        let query = this.props.UsersSearch;
+
         const theNotes = [];
         var i = 0;
-        for (i; i < this.state.courseAnnouncements.length; i++) {
-            if (this.state.theCourse === this.state.courseAnnouncements[i].courseCode) {
-                theNotes.push(
-                    <a style={{ marginBottom: '5px', backgroundColor: '#febf63' }} href="#" class="list-group-item list-group-item-action list-group-item-primary">
-                        <a style={{ color: '#1089ff' }} class="header">{this.state.courseAnnouncements[i].courseCode}</a>
-                        <div style={{ color: 'black' }} class="description">{this.state.courseAnnouncements[i].announcementText}</div>
-                        <p style={{ color: '#1089ff' }}> <b> {this.state.courseAnnouncements[i].announcementDate} </b> </p>
-                    </a>
-                );
+        for (i; i < this.state.announcements.length; i++) {
+            if (this.state.theCourse === this.state.announcements[i].course_code) {
+                if(query === ""){
+                    theNotes.push(
+                        <a style={{ marginBottom: '5px', backgroundColor: '#febf63' }} href="#" class="list-group-item list-group-item-action list-group-item-primary">
+                            <a style={{ color: '#1089ff' }} class="header">{this.state.announcements[i].course_code}</a>
+                            <div style={{ color: 'black' }} class="description">{this.state.announcements[i].ano_text}</div>
+                            <p style={{ color: '#1089ff' }}> <b> {this.state.announcements[i].ano_date} </b> </p>
+                        </a>
+                    );
+                }
+                else{
+                    if((this.state.announcements[i].ano_text.substr(0,query.length).toLowerCase()) === (query.toLowerCase()) ||
+                    (this.state.announcements[i].ano_date.substr(0,query.length)) === (query))
+                    {
+                        theNotes.push(
+                            <a style={{ marginBottom: '5px', backgroundColor: '#febf63' }} href="#" class="list-group-item list-group-item-action list-group-item-primary">
+                                <a style={{ color: '#1089ff' }} class="header">{this.state.announcements[i].course_code}</a>
+                                <div style={{ color: 'black' }} class="description">{this.state.announcements[i].ano_text}</div>
+                                <p style={{ color: '#1089ff' }}> <b> {this.state.announcements[i].ano_date} </b> </p>
+                            </a>
+                        );
+                    }
+                }
             }
         }
 

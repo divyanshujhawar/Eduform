@@ -13,7 +13,7 @@ class GenericAssignments extends React.Component {
 
     constructor(props) {
         super(props);
-        const { theCourse } = this.props.location.assignstate;
+        const { theCourse } = this.props.match.params.courseCode;
         var presetForNav = false;
         var defVal = 30;
         if (this.props.toggleState) {
@@ -31,18 +31,22 @@ class GenericAssignments extends React.Component {
         }
 
         this.state = {
-            myCourse: theCourse,
+            myCourse: this.props.match.params.courseCode,
             displayNav: presetForNav,
             itemPad: defVal,
-            allAssignments: []
+            allAssignments: [],
+            usersSearchedItems : "",
+            userTyped : false        
+            
         }
 
         this.bar = this.bar.bind(this);
         this.displayer = this.displayer.bind(this);
-        this.getCourseAssignments = this.getCourseAssignments.bind(this);
+        this.displayAssignments = this.displayAssignments.bind(this);
+        this.theAssignments = this.theAssignments.bind(this);
 
     }
-    displayer() {
+    displayer = () => {
 
         if (this.state.displayNav === true) {
 
@@ -53,7 +57,7 @@ class GenericAssignments extends React.Component {
         }
     }
 
-    bar() {
+    bar = () => {
         this.setState({ displayNav: !this.state.displayNav });
         if (this.state.itemPad === 30) {
             this.setState({ itemPad: 175 });
@@ -64,23 +68,41 @@ class GenericAssignments extends React.Component {
 
     }
 
-    getCourseAssignments() {
-        let code = this.props.match.params.courseCode;
-        if (!code) {
-            return this.props.history.push('/student-courses');
-        } else {
-            //this.state.allAssignments;
 
+    displayAssignments = () =>{
 
+        if(document.getElementById("inputBar").value === ""){
+            this.setState({usersSearchedItems : "", userTyped : false});
+     
         }
+        else{
+            this.setState({usersSearchedItems : document.getElementById("inputBar").value, userTyped : true});
+        }
+
     }
 
-    componentDidMount(){
-        //this.getCourseData();
+    theAssignments = () => {
+
+        if(this.state.userTyped === false)
+        {
+            return (
+                <div>
+                    <Assignments whatUserSearched={""} whichCourse={this.state.myCourse} theTog={this.state.displayNav} />
+                </div>);
+        }
+        else{
+
+            return(
+
+                <Assignments whatUserSearched={this.state.usersSearchedItems} whichCourse={this.state.myCourse} theTog={this.state.displayNav} />
+           
+            );
+        }
+          
     }
 
     render() {
-
+        
         return (
             <div className="backGroundTeachC">
                 <div style={{ paddingLeft: `${this.state.itemPad}px`, paddingRight: '5%' }} className="flex-container">
@@ -92,17 +114,33 @@ class GenericAssignments extends React.Component {
                     </div>
                     <div style={{ marginTop: '30px' }} className="row">
 
-                        <div style={{ textAlign: 'left' }} className="col-md-11 col-sm-8">
+                        <div style={{ textAlign: 'left' }} className="col-md-12 col-sm-8">
                             <img style={{ width: '70px', height: '70px', marginTop: '1.5%' }} src={Logo} alt="edLogo" />
-
-                            <h1 className="studentWords" style={{ fontSize: '2.4rem' }}> <Link to={{
+                            <div style={{marginTop: '20px'}}className='row'>
+                            <div className="col-md-8 col-sm-12">
+                            <h1 className="studentWords" style={{fontSize: '2.6rem' }}> <Link to={{
                                 pathname: '/course/' + this.props.match.params.courseCode, state: {
                                     currentClass: this.state.myCourse
                                 }
-                            }} > <i style={{ color: '#febf63', marginRight: '20px' }} class="fas fa-chevron-circle-left"></i> </Link>Assignments</h1>
+                            }} > <i style={{ color: '#febf63', marginRight: '20px' }} class="fas fa-chevron-circle-left"></i> </Link>Assignments
+                            </h1>
+                        </div>
+                        <div style={{paddingRight: '60px'}} className='col-md-4 col-sm-12'>
+                            <div style={{ width: '100%' }} class="ui vertical menu">
+                                    <div class="item">
+                                        <div class="ui transparent icon input">
+                                            <input type="text" id="inputBar" placeholder="Search Assignments" onChange={this.displayAssignments}/>
+                                            <i class="search icon"></i>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                            
 
                             <hr style={{ marginBottom: '30px' }} />
-                            <Assignments whichCourse={this.state.myCourse} theTog={this.state.displayNav} />
+                           
+                            {this.theAssignments()}
                         </div>
                     </div>
                     {this.displayer()}

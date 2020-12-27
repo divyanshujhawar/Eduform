@@ -33,10 +33,14 @@ class GenericNotifications extends React.Component {
             //myCourse: currentClassNotes,
             myCourse: this.props.match.params.courseCode,
             displayNav: presetForNav,
-            itemPad: defVal
+            itemPad: defVal,
+            usersSearchedItems : "",
+            userTyped : false  
         }
         this.bar = this.bar.bind(this);
         this.displayer = this.displayer.bind(this);
+        this.displayNotes = this.displayNotes.bind(this);
+        this.theNotes = this.theNotes.bind(this);
 
     }
     displayer() {
@@ -60,6 +64,38 @@ class GenericNotifications extends React.Component {
         }
 
     }
+    displayNotes = () =>{
+
+
+
+        if(document.getElementById("inputBar").value === ""){
+            this.setState({usersSearchedItems : "",userTyped : false});
+     
+        }
+        else{
+            this.setState({usersSearchedItems : document.getElementById("inputBar").value,userTyped : true});
+        }
+
+    }
+
+    theNotes = () => {
+
+        if(this.state.userTyped === false)
+        {
+            return (
+                <div>
+                    <Notifications UsersSearch={""} whichCourse={this.state.myCourse} />
+                </div>);
+        }
+        else{
+            
+            return(
+                <Notifications UsersSearch={this.state.usersSearchedItems} whichCourse={this.state.myCourse} />
+            );
+        }
+          
+    }
+
 
     render() {
 
@@ -76,15 +112,28 @@ class GenericNotifications extends React.Component {
 
                         <div style={{ textAlign: 'left' }} className="col-md-10 col-sm-12">
                             <img style={{ width: '70px', height: '70px', marginTop: '1.5%' }} src={Logo} alt="edLogo" />
-
+                            <div style={{marginTop: '20px'}}className='row'>
+                            <div className="col-md-8 col-sm-12">
                             <h1 className="studentWords" style={{ fontSize: '2.4rem' }}> <Link to={{
                                 pathname: '/course/' + this.props.match.params.courseCode, state: {
                                     currentClass: this.state.myCourse
                                 }
                             }} > <i style={{ color: "#febf63", marginRight: '20px' }} class="fas fa-chevron-circle-left"></i> </Link>Announcements</h1>
 
+                                </div>
+                                <div style={{paddingRight: '60px'}} className='col-md-4 col-sm-12'>
+                            <div style={{ width: '100%' }} class="ui vertical menu">
+                                    <div class="item">
+                                        <div class="ui transparent icon input">
+                                            <input type="text" id="inputBar" placeholder="Search Announcements" onChange={this.displayNotes}/>
+                                            <i class="search icon"></i>
+                                        </div>
+                                </div>
+                            </div>
+                          </div>
+                            </div>
                             <hr style={{ marginBottom: '30px' }} />
-                            <Notifications whichCourse={this.state.myCourse} />
+                            {this.theNotes()}
                         </div>
                     </div>
                     {this.displayer()}

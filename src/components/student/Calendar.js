@@ -113,7 +113,7 @@ class Calendar extends React.Component {
 
         var iter = 0;
         var p = dayOfWeekTracker;
-        while (p < dayOfWeekTracker) {
+        while (iter <= dayOfWeekTracker) {
             daysOfWeek1Keys[iter].day = 'noday';
             p += 1;
             iter += 1;
@@ -156,7 +156,7 @@ class Calendar extends React.Component {
         }
         var num = iter;
         while (num < 7) {
-            daysOfWeek5Keys[iter].day = 'noday';
+            daysOfWeek5Keys[num].day = 'noday';
             num += 1;
         }
 

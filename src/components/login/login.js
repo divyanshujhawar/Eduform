@@ -78,7 +78,7 @@ class Login extends Component {
 
 
                     if (UserProfile.getRole() === 'a'){
-                        return this.props.history.push('/admin-home');
+                        return this.props.history.push('/admin-verify-user');
                     }
                     else if (UserProfile.getRole() === 't'){
                         return this.props.history.push('/teacher-home');
@@ -242,12 +242,6 @@ class Login extends Component {
         return (
 
             <div className="App2">
-
-
-                <div>
-                    <NavBar/>
-                </div>
-
 
                 <div style={{paddingTop: '4%', paddingBottom: '5%'}} className="container">
                     <div style={{paddingRight: '2%', paddingLeft: '2%'}} className="row myIntro">

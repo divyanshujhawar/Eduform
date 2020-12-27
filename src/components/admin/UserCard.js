@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {
     Card, CardBody, CardTitle, Button
   } from 'reactstrap';
+import Bootstrap from '../../.././node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Semantic from 'semantic-ui-css/semantic.min.css';
 
 class UserCard extends Component{
 
@@ -25,30 +27,37 @@ class UserCard extends Component{
         }
 
         return (
-            <div style={{paddingTop: '8%'}}>
-                <div style={{backgroundColor: '#1089ff'}} class="ui card">
-                <div class="content">
-                    <Card width="100%">
-                        <CardBody style={{backgroundColor: '#1089ff'}}>
-                            <CardTitle style={{color: 'white'}}>{email}</CardTitle>
-                            <CardTitle style={{color: 'white'}}>{firstName} {lastName}</CardTitle>
-                            <div style ={{alignSelf: 'center', backgroundColor: '#1089ff'}}>
-                                <select name="role" id="role" name="role" style={{fontSize: '.9rem', height: '30px', paddingTop: '2%'}}>
+                <div style={{height: '60px',width: '1000px',backgroundColor: '#1089ff'}} className="ui card">
+                     <div className="content">
+                         <div className="row">
+                            <div style={{color: 'white',paddingTop: '0px',textAlign:'center'}} className="adminWordHead col-4"><p style={{lineHeight: '2px'}}>
+                                {lastName}, {firstName} ({r}) </p> <br style={{marginTop: '0',height: '0'}}/><p style={{lineHeight: '1px',paddingTop: '0',marginTop:'0'}}> <b>{email}</b></p></div>
+                            <div className="adminWordHead col-4" style ={{alignSelf: 'center', backgroundColor: '#1089ff'}}>
+                                <select name="role" id="role" name="role" style={{width: '100px',fontSize: '1rem', height: '35px', paddingTop: '1%'}}>
                                     <option>admin</option>
                                     <option>teacher</option>
                                     <option>student</option>
                                     <option selected="selected">{role}</option>
                                 </select>
                             </div>
-                            <Button style={{backgroundColor: '#febf63', color: 'black', marginTop: '10px'}} onClick={() => this.props.verify(email,document.getElementById("role").value)}>Verify User</Button>
-                        </CardBody>
-                    </Card>
-                </div>
-                </div>
+                            <div className="col-3">
+                        
+                                <Button className="adminWordHead btn-success" style={{fontSize: '1rem',color: 'black'}} onClick={() => this.props.verify(email,document.getElementById("role").value)}><b>Verify User </b></Button>
+  
+                            </div>
+                            <div className="col-1">
+                        
+                                <Button className="btn-danger" style={{fontSize: '1rem',color: 'black'}} onClick={() => this.props.verify(email,document.getElementById("role").value)}><i style={{fontSize: '1.5rem'}} class="fas fa-times-circle"></i></Button>
+  
+                            </div>
+                        </div>
+          
+                     </div>
+        
 
 
             </div>
-        )
+        );
     }
 }
 

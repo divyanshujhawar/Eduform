@@ -14,10 +14,7 @@ class MatchCalendarDays extends React.Component {
     super(props);
 
     this.state = {
-      // Query here specifically by due_date, if due_date matches the selectedDate below. Doing a makeshift query in render()
-      // below with an if statement.
-      //IF we don't do this, also okay, just put all assignment JSON info here.
-      // IF you do, then remove the if statement form inside the render() portion.
+    
         selectedDate : this.props.datePass2,
         primary : this.props.color1,
         secondary : this.props.color2,
@@ -91,7 +88,7 @@ class MatchCalendarDays extends React.Component {
             filename: 'Assignment 6',
             max_points: '200',
             creation_date: 's',
-            due_date: '11/07/2020',
+            due_date: '12/07/2020',
             assignment_path : 'Database Concepts'
           },
           {
@@ -103,7 +100,7 @@ class MatchCalendarDays extends React.Component {
             filename: 'Lab 6',
             max_points: '100',
             creation_date: 's',
-            due_date: '11/10/2020',
+            due_date: '12/10/2020',
             assignment_path : 'Intro to Computer Science'
           },
           {
@@ -115,7 +112,7 @@ class MatchCalendarDays extends React.Component {
             filename: 'Assignment 5',
             max_points: '150',
             creation_date: '2020-11-01',
-            due_date: '11/26/2020',
+            due_date: '12/26/2020',
             assignment_path : 'Intro to Computer Science'
           }
         ]

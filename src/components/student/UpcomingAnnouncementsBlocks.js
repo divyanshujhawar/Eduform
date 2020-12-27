@@ -67,7 +67,9 @@ class UpcomingAnnouncementsBlocks extends React.Component {
 
         this.state = {
 
-            lastWeekAnnouncements: [],
+            lastWeekAnnouncements: [{"announcementDate" : "11/29/2020", "courseCode": "P465", "announcementText" : "Hello how are you?"},
+            {"announcementDate" : "11/29/2020", "courseCode": "P465", "announcementText" : "Hello how are you?"}
+            ,{"announcementDate" : "11/29/2020", "courseCode": "P465", "announcementText" : "Hello how are you?"}],
 
             theBackground: whichCssbackground,
             theWords: whichCsswords,
@@ -123,13 +125,13 @@ class UpcomingAnnouncementsBlocks extends React.Component {
             var passedDay = Date.parse(this.state.lastWeekAnnouncements[i].announcementDate);
             if ((Math.abs(time - passedDay) / milliTime) <= 14) {  // This checks to make sure time is within 2 week span for announcements
                 announceItems.push(
-                    <div style={{ marginBottom: '2px' }} class="item">
+                    <div style={{marginBottom: '2px' }} class="item">
                         <div class="content">
                             <a style={{ marginBottom: '7px' }} className="header"> <b className={`${this.state.theWords}`} style={{ fontSize: '1.1rem' }}> {this.state.lastWeekAnnouncements[i].courseCode} </b> </a>
                             <div style={{ color: 'white' }} className="description">{this.state.lastWeekAnnouncements[i].announcementText}</div>
                             <p className={`${this.state.theWords}`}> <b> {this.state.lastWeekAnnouncements[i].announcementDate} </b> </p>
                         </div>
-                        <hr />
+                        <hr style={{borderTop: 'none',height: '.2px',backgroundColor: 'black'}} />
                     </div>
                 );
             }

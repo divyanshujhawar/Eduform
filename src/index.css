@@ -101,9 +101,7 @@
 .navbar-brand{
   font-family: 'Orbitron';
 }
-.navbar {
-  background-color: #1089ff;
-}
+
 .auth-wrapper{
   padding: 100px 2% 6% 2%;
 }
@@ -366,4 +364,31 @@ thead{
 .stock-container{
     margin-top: 100px;
     margin-left: 300px;
+}
+
+.adminBackground{
+  background-color: #febf63;
+  height: 700px;
+  background-size: cover;
+}
+
+.adminWordHead{
+  font-family: 'Noto Serif TC', serif;
+}
+
+.homePage{
+  background-color: #febf63;
+}
+.homePic{
+  height: 600px;
+  background-image: url(assets/learn.jpg);
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.adminWordHead2{
+  font-family: 'Noto Serif TC', serif;
+  color: #1089ff;
 }

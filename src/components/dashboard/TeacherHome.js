@@ -45,28 +45,24 @@ class TeacherHome extends React.Component {
         this.state.newAnnouncement.courseCode = courseCode;
         this.state.newAnnouncement.announcementText = announceText;
 
-        console.log(this.state.newAnnouncement);
-
         try{
             const response = await fetch('/teacher/makeAnnouncement/' + 'shubham@iu.edu', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify(this.state.newAnnouncement)
             })
-            .then(res => res.json())
-            .then(jsonData => {
+            .then(res => res.text())
+            .then(text => {
 
-                console.log("Results: ", jsonData);
-
-                if (jsonData.status === "SUCCESS!"){
+                if (text === "SUCCESS!"){
                     alert("Announcement created succesfully!");
 
                     document.getElementById("makeAnnouncement").reset();
                     this.setState({newAnnouncement: {}})
+
                 } else{
-                    alert(jsonData.status);
+                    alert(text);
                 }
-                
                 
             });
 
@@ -102,8 +98,6 @@ class TeacherHome extends React.Component {
     }
 
     render() {
-
-
 
         const teacherClassData = [];
         const pastAnnouncements = [];

@@ -653,7 +653,7 @@ class UpcomingAssignments extends React.Component {
             {
               mDay = '0' + mDay;
             }
-            daysToCompareKeys[j].day =  mMonth + "/" + mDay + "/" + year;
+            daysToCompareKeys[0].day =  mMonth + "/" + mDay + "/" + year;
 
             day = 1;
             if((month + 2) > 12){
@@ -1227,7 +1227,7 @@ class UpcomingAssignments extends React.Component {
     {
       days.push(
         <div style={{marginTop: '15px'}} className="myDays">
-          <h3 className={`${this.state.theWords}`} style={{fontSize: '1.6rem'}}> {this.state.daysOfWeek[i].day} - {this.state.date[i].day} </h3>
+          <h3 className="teachWords" style={{fontSize: '1.8rem'}}> {this.state.daysOfWeek[i].day} - {this.state.date[i].day} </h3>
            <Mini datePass={this.state.dateToCompare[i].day} passStyler={this.state.pageTheme} />
         </div>
       );

@@ -13,6 +13,7 @@
     "bootstrap": "^4.5.2",
     "crypto-js": "^4.0.0",
     "react": "^16.13.1",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.13.1",
     "react-dropdown": "^1.9.0",
     "react-foundation": "^0.9.6",
@@ -20,9 +21,11 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "reactstrap": "^8.6.0",
+    "semantic-react": "^0.12.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "write-json-file": "^4.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

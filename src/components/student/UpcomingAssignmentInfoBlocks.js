@@ -66,7 +66,7 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     course_id: 23,
                     user_id: 2,
                     course_code: 'CS1009',
-                    teacher_email: 'f',
+                    teacher_email: 'divyanshu@iu.edu',
                     filename: 'Lab 7',
                     max_points: '120',
                     creation_date: 's',
@@ -78,11 +78,11 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     course_id: 56,
                     user_id: 2,
                     course_code: 'CS1009',
-                    teacher_email: 'f',
+                    teacher_email: 'divyanshu@iu.edu',
                     filename: 'Assignment 3',
                     max_points: '75',
                     creation_date: 's',
-                    due_date: '11/25/2020',
+                    due_date: '11/29/2020',
                     assignment_path: 'Object Oriented Programming'
                 },
                 {
@@ -90,7 +90,7 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     course_id: 11,
                     user_id: 2,
                     course_code: 'CS1113',
-                    teacher_email: 'f',
+                    teacher_email: 'divyanshu@iu.edu',
                     filename: 'Assignment 5',
                     max_points: '25',
                     creation_date: 's',
@@ -102,7 +102,7 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     course_id: 11,
                     user_id: 2,
                     course_code: 'CS1112',
-                    teacher_email: 'f',
+                    teacher_email: 'divyanshu@iu.edu',
                     filename: 'Milestone 3',
                     max_points: '150',
                     creation_date: 's',
@@ -114,7 +114,7 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     course_id: 4,
                     user_id: 2,
                     course_code: 'CS2432',
-                    teacher_email: 'd',
+                    teacher_email: 'divyanshu@iu.edu',
                     filename: 'Midterm',
                     max_points: '100',
                     creation_date: 's',
@@ -126,11 +126,11 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     course_id: 12,
                     user_id: 2,
                     course_code: 'CS2145',
-                    teacher_email: 'd',
+                    teacher_email: 'divyanshu@iu.edu',
                     filename: 'Assignment 6',
                     max_points: '200',
                     creation_date: 's',
-                    due_date: '11/17/2020',
+                    due_date: '12/05/2020',
                     assignment_path: 'Database Concepts'
                 },
                 {
@@ -142,7 +142,7 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     filename: 'Lab 6',
                     max_points: '100',
                     creation_date: 's',
-                    due_date: '11/21/2020',
+                    due_date: '12/05/2020',
                     assignment_path: 'Intro to Computer Science'
                 },
                 {
@@ -154,7 +154,7 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
                     filename: 'Assignment 5',
                     max_points: '150',
                     creation_date: '2020-11-18',
-                    due_date: '11/18/2020',
+                    due_date: '11/28/2020',
                     assignment_path: 'Intro to Computer Science'
                 }
             ],
@@ -197,12 +197,12 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
         const upcoming = [];
         var i = 0;
         for (i; i < this.state.assignments.length; i++) {
-            if (this.state.assignments[i].due_date === this.state.selectedDate && this.state.assignments[i].teacher_email === 'f') // and where teacher email is included
+            if (this.state.assignments[i].due_date === this.state.selectedDate && this.state.assignments[i].teacher_email === 'divyanshu@iu.edu') // and where teacher email is included
             {
                 upcoming.push(
-                    <div class="item">
+                    <div style={{borderTop: 'none',borderBottom: 'solid', borderColor: 'black', borderWidth: '1px'}} className="item">
                         <h3 className={`${this.state.others}`}> {this.state.assignments[i].filename} </h3>
-                        <div class="content">
+                        <div className="content">
                             <div className={`${this.state.theWords}`}>
                                 {this.state.assignments[i].assignment_path} - {this.state.assignments[i].course_code} </div>
                             <p className={`${this.state.others}`} style={{ fontSize: '.9rem' }}> Due: {this.state.assignments[i].due_date} </p>
@@ -214,7 +214,7 @@ class UpcomingAssignmentInfoBlocks extends React.Component {
         }
 
         return (
-            <div class="ui celled list">
+            <div className="ui celled list">
                 {upcoming}
             </div>
         );

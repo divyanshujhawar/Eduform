@@ -6,6 +6,7 @@ import './iu.css';
 import './bat.css';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Login from "./components/login/login.js";
+import Home from "./components/login/home.js";
 import SignUp from "./components/login/register.js";
 import Reset from "./components/login/PasswordReset.js";
 import ChangePassword from "./components/login/ChangePassword.js";
@@ -31,7 +32,7 @@ import GenericChat from "./components/courses/GenericChat.js";
 import GenericGrades from "./components/courses/GenericGrades.js";
 import GenericNotifications from "./components/courses/GenericNotifications.js";
 import GenericCourse from "./components/student/GenericCourse.js";
-import GenericIndCourse from "./components/courses/GenericOneAssignment.js";
+import GenericIndAssignment from "./components/courses/GenericOneAssignment.js";
 
 import TeacherCalendar from "./components/teacher/TeacherCalendar.js";
 import TeacherChat from "./components/teacher/TeacherChat.js";
@@ -46,7 +47,7 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <div>
-                    <Route exact path='/' component={Login} />
+                    <Route exact path='/' component={Home} />
                     <Route path="/sign-in" component={Login} />
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/password-reset" component={Reset} />
@@ -57,16 +58,22 @@ function App() {
                     <Route path="/teacher-home" component={TeacherHome} />
                     <Route path="/admin-home" component={AdminHome} />
 
-                    <Route path="/student-calendar" component={StudentCalendar} />
-                    <Route path="/student-chat" component={StudentChat} />
                     <Route path="/student-courses" component={StudentCourses} />
+                    <Route path="/student-chat" component={StudentChat} />
+                    <Route path="/student-calendar" component={StudentCalendar} />
                     <Route path="/student-settings" component={StudentSettings} />
+                    <Route exact path="/course/:courseCode" component={GenericCourse} />       
+                    <Route exact path="/course/:courseCode/assignments" component={GenericAssignments} />
+                    <Route exact path="/course/:courseCode/grades" component={GenericGrades} />
+                    <Route exact path="/course/:courseCode/announcements" component={GenericNotifications} />
+                    <Route path="/course/:courseCode/assignments/:assignmentId" component={GenericIndAssignment} />
 
                     <Route path="/teacher-calendar" component={TeacherCalendar} />
                     <Route path="/teacher-chat" component={TeacherChat} />
                     <Route path="/teacher-courses" component={TeacherCourses} />
                     <Route path="/teacher-settings" component={TeacherSettings} />
-                    <Route path="/course212902" component={GenericCourse2} />
+                    <Route exact path="/teacher-course/:courseCode" component={GenericCourse2} />
+                    <Route exact path="/teacher-course/:courseCode/assignments" component={GenericAssignments} />
 
                     <Route path="/admin-verify-user" component={AdminVerifyUser} />
                     <Route path="/admin-new-course" component={AdminAddNewCourse} />
@@ -78,12 +85,7 @@ function App() {
                     <Route path="/coursenotifications930293" component={GenericNotifications} />
                     <Route path="/coursechat28738" component={GenericChat} />
                     <Route path="/coursegrades827398" component={GenericGrades} />
-                    <Route exact path="/course/:courseCode" component={GenericCourse} />
-                    <Route path="/course57589433" component={GenericIndCourse} />
-
-                    <Route exact path="/course/:courseCode/assignments" component={GenericAssignments} />
-                    <Route exact path="/course/:courseCode/grades" component={GenericGrades} />
-                    <Route exact path="/course/:courseCode/announcements" component={GenericNotifications} />
+                    <Route path="/course57589433" component={GenericIndAssignment} />
 
 
                 </div>

@@ -20,14 +20,17 @@ class AdminHome extends Component{
 
 
     return(
-      <div className="backGroundSAT">
-        <AdminNavBar/>
-          <div>
-            <p> Welcome to the dashboard</p>
-            <br></br>
-            <p>{UserProfile.getName()}
-            </p>
-          </div>
+      
+        <div className="adminBackground">
+          <div className="flex-container">
+          <AdminNavBar/>
+            <div>
+              <p> Welcome to the dashboard</p>
+              <br></br>
+              <p>{UserProfile.getName()}
+              </p>
+            </div>
+        </div>
       </div>
     );
   }
